@@ -1,0 +1,26 @@
+{
+  "name": "chefly",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@tsconfig/svelte": "^5.0.2",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "svelte-check": "^4.0.4",
+    "tailwindcss": "^3.4.10",
+    "tslib": "^2.7.0",
+    "typescript": "~5.9.3",
+    "vite": "^6.0.7"
+  },
+  "dependencies": {
+    "svelte": "^5.1.2"
+  }
+}
