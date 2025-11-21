@@ -1,9 +1,29 @@
 <svelte:head>
-  <title>Private Chef on Lake Como</title>
+  <title>Private Chef on Lake Como | Luxury Villa Dining</title>
   <meta
     name="description"
-    content="Tailored private chef experiences on Lake Como. Zero planning, just arrive."
+    content="Book a hand-selected private chef on Lake Como. Bespoke menus, villa dining, and zero planning for ultra-luxury vacations."
   />
+  <meta
+    name="keywords"
+    content="Lake Como private chef, villa dining experience, luxury catering Italy, chef at home Lake Como, bespoke tasting menu"
+  />
+  <link rel="canonical" href="https://cheflycomo.com/" />
+  <meta property="og:title" content="Private Chef on Lake Como — Chefly Como" />
+  <meta
+    property="og:description"
+    content="No menus, no planning. Share your preferences and we deliver an unforgettable villa dinner with a Lake Como private chef."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cheflycomo.com/" />
+  <meta property="og:image" content="https://cheflycomo.com/media/louis-hansel-0sYLBZjgTTw-unsplash.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chefly Como | Private Chef on Lake Como" />
+  <meta
+    name="twitter:description"
+    content="Tailored private chef experiences for Lake Como villas. Seafood, vegan, classic Italian and more."
+  />
+  <meta name="twitter:image" content="https://cheflycomo.com/media/louis-hansel-0sYLBZjgTTw-unsplash.jpg" />
   <link
     rel="preconnect"
     href="https://fonts.googleapis.com"
@@ -17,6 +37,9 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Source+Sans+3:wght@400;500&display=swap"
     rel="stylesheet"
   />
+  <script type="application/ld+json">
+    {JSON.stringify(schemaOrg)}
+  </script>
 </svelte:head>
 
 <main class="min-h-screen bg-[#050608] text-[#f7f1e3]">
@@ -336,6 +359,23 @@
     <p class="mt-1">Rated 4.9/5 by international guests.</p>
   </section>
 
+  <section id="faq" class="mx-auto max-w-5xl px-6 pb-16">
+    <h2 class="text-center font-serif text-3xl">Lake Como Private Chef FAQs</h2>
+    <p class="mt-4 text-center text-[#d9d2c6]">
+      Helpful answers for travelers planning exclusive villa dining on Lake Como.
+    </p>
+    <div class="mt-10 space-y-6">
+      {#each faqs as item}
+        <details class="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <summary class="cursor-pointer font-serif text-2xl text-[#f7f1e3]">
+            {item.question}
+          </summary>
+          <p class="mt-3 text-[#d9d2c6]">{item.answer}</p>
+        </details>
+      {/each}
+    </div>
+  </section>
+
   <footer class="border-t border-white/10 px-6 py-10 text-center text-xs uppercase tracking-[0.3em] text-[#bcb3a2]">
     <p>Curated Private Chefs for Lake Como</p>
     <div class="mt-3 space-x-6 text-[0.7rem] normal-case tracking-[0.2em]">
@@ -383,6 +423,21 @@
     form.reset();
   };
 
+  const schemaOrg = {
+    '@context': 'https://schema.org',
+    '@type': 'FoodEstablishment',
+    name: 'Chefly Como',
+    url: 'https://chefly-liart.vercel.app/',
+    image: 'https://chefly-liart.vercel.app/media/louis-hansel-0sYLBZjgTTw-unsplash.jpg',
+    description:
+      'Chefly Como arranges private chef services for luxury villas around Lake Como, matching travelers with bespoke culinary experiences.',
+    servesCuisine: ['Italian', 'Seafood', 'Vegan', 'Fine Dining'],
+    areaServed: 'Lake Como, Italy',
+    telephone: '+39 031 000 0000',
+    priceRange: '$$$',
+    sameAs: ['https://www.instagram.com/cheflycomo', 'https://www.facebook.com/cheflycomo']
+  };
+
   const navLinks = [
     { label: 'About', href: '#about' },
     { label: 'Service', href: '#services' },
@@ -391,10 +446,10 @@
   ];
 
   const galleryImages = [
-    '../public/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.jpg',
-    '../public/media/signal-2025-11-21-103942.jpeg',
-    '../public/media/creative-assortment-delicious-food.jpg',
-    '../public/media/signal-2025-11-20-175804.jpeg',
+    '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.jpg',
+    '/media/signal-2025-11-21-103942.jpeg',
+    '/media/creative-assortment-delicious-food.jpg',
+    '/media/signal-2025-11-20-175804.jpeg'
   ];
 
   const steps = [
@@ -421,6 +476,24 @@
     { label: 'Kosher', value: 'kosher' },
     { label: 'Halal', value: 'halal' },
     { label: 'Other', value: 'other' }
+  ];
+
+  const faqs = [
+    {
+      question: 'How far in advance should we book a private chef on Lake Como?',
+      answer:
+        'We specialize in quick turnarounds. Many dinners confirm within a few days, even in peak season. Share your details and we’ll assign an available chef right away.'
+    },
+    {
+      question: 'Can the chef accommodate allergies and dietary restrictions?',
+      answer:
+        'Absolutely. We collect detailed dietary requirements up front and curate a chef who specializes in those needs—vegan, gluten-free, kosher, halal, or fully bespoke.'
+    },
+    {
+      question: 'Do you provide wine pairings and service staff?',
+      answer:
+        'Yes. Sommelier-selected wine pairings, mixologists, and service staff can be added to any dinner. Simply include your request in the form and we will arrange the full hospitality team.'
+    }
   ];
 </script>
 
