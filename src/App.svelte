@@ -20,11 +20,18 @@
 </svelte:head>
 
 <main class="min-h-screen bg-[#050608] text-[#f7f1e3]">
-  <section
-    class="relative min-h-screen w-full bg-cover bg-center"
-    style="background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=2100&q=80');"
-  >
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+  <section class="relative min-h-screen w-full overflow-hidden bg-black">
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80"
+    >
+      <source src="../public/media/hero-video.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/65 to-black/20"></div>
     <header class="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur">
       <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <div class="font-serif text-xl tracking-wide">Chefly Como</div>
@@ -115,7 +122,7 @@
         </button>
         <p class="text-xs uppercase tracking-[0.3em] text-[#d9d2c6]">Ultra-short form</p>
         <h3 class="mt-3 font-serif text-3xl">Arranging your dinner takes a minute.</h3>
-        <form class="mt-8 space-y-5" on:submit|preventDefault={closeForm}>
+        <form class="mt-8 space-y-5" on:submit={handleSubmit}>
           <div class="grid gap-5 md:grid-cols-2">
             <div>
               <label for="request-name" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Full Name</label>
@@ -124,6 +131,7 @@
                 id="request-name"
                 placeholder="Your name"
                 class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+                name="fullName"
               />
             </div>
             <div>
@@ -133,6 +141,7 @@
                 id="request-email"
                 placeholder="you@email.com"
                 class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+                name="email"
               />
             </div>
           </div>
@@ -143,6 +152,7 @@
                 type="date"
                 id="request-date"
                 class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+                name="date"
               />
             </div>
             <div>
@@ -154,6 +164,7 @@
                 placeholder="Villa del Lago"
                 id="request-location"
                 class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+                name="location"
               />
             </div>
           </div>
@@ -166,6 +177,7 @@
                 placeholder="8"
                 id="request-guests"
                 class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+                name="guests"
               />
             </div>
             <div>
@@ -173,6 +185,7 @@
               <select
                 id="request-diet"
                 class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+                name="preference"
               >
                 <option>Italian Classic</option>
                 <option>Seafood</option>
@@ -189,6 +202,7 @@
             <select
               id="request-requirements"
               class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+              name="requirements"
             >
               <option value="">Select requirement</option>
               {#each dietaryOptions as option}
@@ -203,6 +217,7 @@
               rows="3"
               placeholder="Allergies, wine pairing preferences, service style..."
               class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              name="notes"
             ></textarea>
           </div>
           <div>
@@ -212,11 +227,18 @@
               placeholder="+1 415 555 2211"
               id="request-whatsapp"
               class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              name="whatsapp"
             />
           </div>
-          <button class="mt-4 w-full rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]">
-            Confirm Request
+          <button
+            class="mt-4 w-full rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+            disabled={submitting}
+          >
+            {submitting ? 'Sending...' : 'Confirm Request'}
           </button>
+          {#if submitMessage}
+            <p class="text-center text-sm text-[#69dba1]" aria-live="polite">{submitMessage}</p>
+          {/if}
         </form>
       </div>
     </div>
@@ -327,6 +349,8 @@
 <script lang="ts">
   let navOpen = false;
   let formOpen = false;
+  let submitting = false;
+  let submitMessage = '';
 
   const openForm = () => {
     formOpen = true;
@@ -335,6 +359,28 @@
 
   const closeForm = () => {
     formOpen = false;
+    submitMessage = '';
+  };
+
+  const handleSubmit = async (event: SubmitEvent) => {
+    event.preventDefault();
+    submitting = true;
+    submitMessage = '';
+
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+
+    const payload: Record<string, FormDataEntryValue> = {};
+    for (const [key, value] of formData.entries()) {
+      payload[key] = value;
+    }
+    // console.info('Fake request payload:', JSON.stringify(payload, null, 2));
+
+    submitting = false;
+    submitMessage = 'Thanks! Your request is logged. We will follow up shortly.';
+    form.reset();
   };
 
   const navLinks = [
@@ -345,10 +391,10 @@
   ];
 
   const galleryImages = [
-    'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1470137430626-983a37b8ea46?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1470123808288-1e59739efff5?auto=format&fit=crop&w=1200&q=80'
+    '../public/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.jpg',
+    '../public/media/signal-2025-11-21-103942.jpeg',
+    '../public/media/creative-assortment-delicious-food.jpg',
+    '../public/media/signal-2025-11-20-175804.jpeg',
   ];
 
   const steps = [
