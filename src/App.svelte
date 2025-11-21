@@ -394,7 +394,7 @@
 
   const heroPoster =
     'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80';
-  const heroVideoSrc = 'https://cdn.coverr.co/videos/coverr-chef-fire-1550/1080p.mp4';
+  const heroVideoSrc = '/media/hero-video2.mp4';
 
   const openForm = () => {
     formOpen = true;
