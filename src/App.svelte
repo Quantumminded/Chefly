@@ -16,7 +16,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Source+Sans+3:wght@400;500&display=swap"
     rel="stylesheet"
-    />
   />
 </svelte:head>
 
@@ -26,6 +25,47 @@
     style="background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=2100&q=80');"
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+    <header class="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+        <div class="font-serif text-xl tracking-wide">Chefly Como</div>
+        <nav class="hidden gap-8 text-sm uppercase tracking-[0.3em] lg:flex">
+          {#each navLinks as link}
+            <a class="text-[#f7f1e3]/80 transition hover:text-white" href={link.href}>{link.label}</a>
+          {/each}
+        </nav>
+        <button
+          class="hidden rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white transition hover:bg-white/20 lg:inline-flex"
+        >
+          Book
+        </button>
+        <button
+          class="lg:hidden ml-4 rounded-full border border-white/20 bg-white/10 p-2"
+          aria-label="Toggle navigation"
+          on:click={() => (navOpen = !navOpen)}
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      {#if navOpen}
+        <div class="border-t border-white/10 bg-black/80 px-6 py-4 lg:hidden">
+          <nav class="flex flex-col gap-4 text-sm uppercase tracking-[0.3em]">
+            {#each navLinks as link}
+              <a class="text-[#f7f1e3] hover:text-white" href={link.href} on:click={() => (navOpen = false)}
+                >{link.label}</a
+              >
+            {/each}
+            <button
+              class="mt-2 rounded-full bg-[#b6893f] px-4 py-3 text-xs font-semibold tracking-wide text-black"
+              on:click={() => (navOpen = false)}
+            >
+              Request Your Chef
+            </button>
+          </nav>
+        </div>
+      {/if}
+    </header>
     <div class="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-24">
       <p class="text-sm uppercase tracking-[0.3em] text-[#d7c39f]/80">Lake Como • Private Dining</p>
       <h1 class="mt-6 max-w-3xl font-serif text-4xl leading-snug text-white drop-shadow md:text-6xl">
@@ -43,7 +83,7 @@
     </p>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16">
+  <section id="services" class="mx-auto max-w-6xl px-6 py-16">
     <div class="grid gap-8 md:grid-cols-3">
       <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
         <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#b6893f]/20 text-white">
@@ -77,18 +117,18 @@
     </div>
   </section>
 
-  <section class="bg-[#090b0f] px-6 py-12">
+  <section id="gallery" class="bg-[#090b0f] px-6 py-12">
     <div class="mx-auto grid max-w-6xl gap-4 md:grid-cols-4">
       {#each galleryImages as image}
         <div
           class="h-52 overflow-hidden rounded-2xl border border-white/10 bg-cover bg-center"
           style={`background-image:url('${image}');`}
-        />
+        ></div>
       {/each}
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16">
+  <section id="about" class="mx-auto max-w-6xl px-6 py-16">
     <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
       <div>
         <p class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">How it works</p>
@@ -113,33 +153,39 @@
         <h3 class="mt-3 font-serif text-3xl">Arranging your dinner takes a minute.</h3>
         <form class="mt-8 space-y-5">
           <div>
-            <label class="text-sm uppercase tracking-wide text-[#bcb3a2]">Date</label>
+            <label for="request-date" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Date</label>
             <input
               type="date"
+              id="request-date"
               class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
             />
           </div>
           <div>
-            <label class="text-sm uppercase tracking-wide text-[#bcb3a2]">Location / Villa Name</label>
+            <label for="request-location" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Location / Villa Name</label>
             <input
               type="text"
               placeholder="Villa del Lago"
+              id="request-location"
               class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
             />
           </div>
           <div class="grid gap-5 md:grid-cols-2">
             <div>
-              <label class="text-sm uppercase tracking-wide text-[#bcb3a2]">Number of Guests</label>
+              <label for="request-guests" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Number of Guests</label>
               <input
                 type="number"
                 min="2"
                 placeholder="8"
+                id="request-guests"
                 class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
               />
             </div>
             <div>
-              <label class="text-sm uppercase tracking-wide text-[#bcb3a2]">Dietary Preferences</label>
-              <select class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none">
+              <label for="request-diet" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Dietary Preferences</label>
+              <select
+                id="request-diet"
+                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+              >
                 <option>Italian Classic</option>
                 <option>Seafood</option>
                 <option>Vegan</option>
@@ -148,11 +194,37 @@
               </select>
             </div>
           </div>
+          <fieldset class="rounded-2xl border border-white/10 bg-black/20 p-6">
+            <legend class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">Dietary Requirements</legend>
+            <div class="mt-4 grid gap-4 md:grid-cols-2">
+              {#each dietaryOptions as option}
+                <label class="flex items-center gap-3 text-sm text-[#e6dfd1]">
+                  <input
+                    type="checkbox"
+                    name="dietary"
+                    value={option.value}
+                    class="h-4 w-4 rounded border-white/30 bg-transparent text-[#b6893f] focus:ring-[#b6893f]"
+                  />
+                  <span>{option.label}</span>
+                </label>
+              {/each}
+            </div>
+          </fieldset>
           <div>
-            <label class="text-sm uppercase tracking-wide text-[#bcb3a2]">WhatsApp Number</label>
+            <label for="request-notes" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Special Requests</label>
+            <textarea
+              id="request-notes"
+              rows="3"
+              placeholder="Allergies, wine pairing preferences, service style..."
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+            ></textarea>
+          </div>
+          <div>
+            <label for="request-whatsapp" class="text-sm uppercase tracking-wide text-[#bcb3a2]">WhatsApp Number</label>
             <input
               type="tel"
               placeholder="+1 415 555 2211"
+              id="request-whatsapp"
               class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
             />
           </div>
@@ -164,7 +236,7 @@
     </div>
   </section>
 
-  <section class="px-6 pb-10 text-center text-sm text-[#bcb3a2]">
+  <section id="contact" class="px-6 pb-10 text-center text-sm text-[#bcb3a2]">
     <p>Over 120 villa dinners organized last season.</p>
     <p class="mt-1">Rated 4.9/5 by international guests.</p>
   </section>
@@ -172,14 +244,23 @@
   <footer class="border-t border-white/10 px-6 py-10 text-center text-xs uppercase tracking-[0.3em] text-[#bcb3a2]">
     <p>Curated Private Chefs for Lake Como</p>
     <div class="mt-3 space-x-6 text-[0.7rem] normal-case tracking-[0.2em]">
-      <a href="#" class="hover:text-white">Privacy</a>
+      <a href="/privacy" class="hover:text-white">Privacy</a>
       <span class="text-white/30">•</span>
-      <a href="#" class="hover:text-white">Terms</a>
+      <a href="/terms" class="hover:text-white">Terms</a>
     </div>
   </footer>
 </main>
 
 <script lang="ts">
+  let navOpen = false;
+
+  const navLinks = [
+    { label: 'About', href: '#about' },
+    { label: 'Service', href: '#services' },
+    { label: 'Gallery', href: '#gallery' },
+    { label: 'Contact', href: '#contact' }
+  ];
+
   const galleryImages = [
     'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
     'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=1200&q=80',
@@ -200,6 +281,17 @@
       title: 'Chef arrives at your villa',
       copy: 'They arrive with a fully personalized menu, premium ingredients, and service staff if desired.'
     }
+  ];
+
+  const dietaryOptions = [
+    { label: 'None', value: 'none' },
+    { label: 'Gluten Free', value: 'gluten-free' },
+    { label: 'Dairy Free', value: 'dairy-free' },
+    { label: 'Vegan', value: 'vegan' },
+    { label: 'Vegetarian', value: 'vegetarian' },
+    { label: 'Kosher', value: 'kosher' },
+    { label: 'Halal', value: 'halal' },
+    { label: 'Other', value: 'other' }
   ];
 </script>
 
