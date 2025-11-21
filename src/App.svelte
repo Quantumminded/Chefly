@@ -35,6 +35,8 @@
         </nav>
         <button
           class="hidden rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white transition hover:bg-white/20 lg:inline-flex"
+          type="button"
+          on:click={openForm}
         >
           Book
         </button>
@@ -42,6 +44,7 @@
           class="lg:hidden ml-4 rounded-full border border-white/20 bg-white/10 p-2"
           aria-label="Toggle navigation"
           on:click={() => (navOpen = !navOpen)}
+          type="button"
         >
           <svg class="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
             <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
@@ -58,7 +61,8 @@
             {/each}
             <button
               class="mt-2 rounded-full bg-[#b6893f] px-4 py-3 text-xs font-semibold tracking-wide text-black"
-              on:click={() => (navOpen = false)}
+              on:click={openForm}
+              type="button"
             >
               Request Your Chef
             </button>
@@ -74,7 +78,11 @@
       <p class="mt-6 max-w-xl text-lg text-[#f7f1e3]/90">
         Tell us your preferences. We handle the rest.
       </p>
-      <button class="mt-10 w-fit rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]">
+      <button
+        class="mt-10 w-fit rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+        type="button"
+        on:click={openForm}
+      >
         Request Your Chef — 60 Seconds
       </button>
     </div>
@@ -82,6 +90,137 @@
       Trusted by villa guests from US • UK • DE • CH
     </p>
   </section>
+
+  {#if formOpen}
+    <div class="fixed inset-0 z-50 flex items-center justify-center px-4 py-10">
+      <button
+        type="button"
+        class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        aria-label="Close form"
+        on:click={closeForm}
+      ></button>
+      <div
+        class="relative z-10 w-full max-w-2xl overflow-y-auto rounded-3xl border border-white/10 bg-[#0b0e13] p-8 shadow-2xl"
+        style="max-height: 90vh;"
+      >
+        <button
+          class="absolute right-4 top-4 rounded-full border border-white/20 bg-white/5 p-2 text-white hover:bg-white/10"
+          type="button"
+          aria-label="Close form"
+          on:click={closeForm}
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+            <path d="M6 6l12 12M18 6l-12 12" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <p class="text-xs uppercase tracking-[0.3em] text-[#d9d2c6]">Ultra-short form</p>
+        <h3 class="mt-3 font-serif text-3xl">Arranging your dinner takes a minute.</h3>
+        <form class="mt-8 space-y-5" on:submit|preventDefault={closeForm}>
+          <div class="grid gap-5 md:grid-cols-2">
+            <div>
+              <label for="request-name" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Full Name</label>
+              <input
+                type="text"
+                id="request-name"
+                placeholder="Your name"
+                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="request-email" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Email</label>
+              <input
+                type="email"
+                id="request-email"
+                placeholder="you@email.com"
+                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              />
+            </div>
+          </div>
+          <div class="grid gap-5 md:grid-cols-2">
+            <div>
+              <label for="request-date" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Date</label>
+              <input
+                type="date"
+                id="request-date"
+                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="request-location" class="text-sm uppercase tracking-wide text-[#bcb3a2]"
+                >Location / Villa Name</label
+              >
+              <input
+                type="text"
+                placeholder="Villa del Lago"
+                id="request-location"
+                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              />
+            </div>
+          </div>
+          <div class="grid gap-5 md:grid-cols-2">
+            <div>
+              <label for="request-guests" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Number of Guests</label>
+              <input
+                type="number"
+                min="2"
+                placeholder="8"
+                id="request-guests"
+                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="request-diet" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Dietary Preferences</label>
+              <select
+                id="request-diet"
+                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+              >
+                <option>Italian Classic</option>
+                <option>Seafood</option>
+                <option>Vegan</option>
+                <option>Vegetarian</option>
+                <option>Chef Choice</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="request-requirements" class="text-sm uppercase tracking-wide text-[#bcb3a2]"
+              >Dietary Requirements</label
+            >
+            <select
+              id="request-requirements"
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+            >
+              <option value="">Select requirement</option>
+              {#each dietaryOptions as option}
+                <option value={option.value}>{option.label}</option>
+              {/each}
+            </select>
+          </div>
+          <div>
+            <label for="request-notes" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Special Requests</label>
+            <textarea
+              id="request-notes"
+              rows="3"
+              placeholder="Allergies, wine pairing preferences, service style..."
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+            ></textarea>
+          </div>
+          <div>
+            <label for="request-whatsapp" class="text-sm uppercase tracking-wide text-[#bcb3a2]">WhatsApp Number</label>
+            <input
+              type="tel"
+              placeholder="+1 415 555 2211"
+              id="request-whatsapp"
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+            />
+          </div>
+          <button class="mt-4 w-full rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]">
+            Confirm Request
+          </button>
+        </form>
+      </div>
+    </div>
+  {/if}
 
   <section id="services" class="mx-auto max-w-6xl px-6 py-16">
     <div class="grid gap-8 md:grid-cols-3">
@@ -144,94 +283,28 @@
             </div>
           {/each}
         </div>
-        <button class="mt-10 rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]">
+        <button
+          class="mt-10 rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+          type="button"
+          on:click={openForm}
+        >
           Request Your Chef — 60 Seconds
         </button>
       </div>
       <div class="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
         <p class="text-xs uppercase tracking-[0.3em] text-[#d9d2c6]">Ultra-short form</p>
         <h3 class="mt-3 font-serif text-3xl">Arranging your dinner takes a minute.</h3>
-        <form class="mt-8 space-y-5">
-          <div>
-            <label for="request-date" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Date</label>
-            <input
-              type="date"
-              id="request-date"
-              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
-            />
-          </div>
-          <div>
-            <label for="request-location" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Location / Villa Name</label>
-            <input
-              type="text"
-              placeholder="Villa del Lago"
-              id="request-location"
-              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
-            />
-          </div>
-          <div class="grid gap-5 md:grid-cols-2">
-            <div>
-              <label for="request-guests" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Number of Guests</label>
-              <input
-                type="number"
-                min="2"
-                placeholder="8"
-                id="request-guests"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
-              />
-            </div>
-            <div>
-              <label for="request-diet" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Dietary Preferences</label>
-              <select
-                id="request-diet"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
-              >
-                <option>Italian Classic</option>
-                <option>Seafood</option>
-                <option>Vegan</option>
-                <option>Vegetarian</option>
-                <option>Chef Choice</option>
-              </select>
-            </div>
-          </div>
-          <fieldset class="rounded-2xl border border-white/10 bg-black/20 p-6">
-            <legend class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">Dietary Requirements</legend>
-            <div class="mt-4 grid gap-4 md:grid-cols-2">
-              {#each dietaryOptions as option}
-                <label class="flex items-center gap-3 text-sm text-[#e6dfd1]">
-                  <input
-                    type="checkbox"
-                    name="dietary"
-                    value={option.value}
-                    class="h-4 w-4 rounded border-white/30 bg-transparent text-[#b6893f] focus:ring-[#b6893f]"
-                  />
-                  <span>{option.label}</span>
-                </label>
-              {/each}
-            </div>
-          </fieldset>
-          <div>
-            <label for="request-notes" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Special Requests</label>
-            <textarea
-              id="request-notes"
-              rows="3"
-              placeholder="Allergies, wine pairing preferences, service style..."
-              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
-            ></textarea>
-          </div>
-          <div>
-            <label for="request-whatsapp" class="text-sm uppercase tracking-wide text-[#bcb3a2]">WhatsApp Number</label>
-            <input
-              type="tel"
-              placeholder="+1 415 555 2211"
-              id="request-whatsapp"
-              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
-            />
-          </div>
-          <button class="mt-4 w-full rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]">
-            Confirm Request
-          </button>
-        </form>
+        <p class="mt-4 text-[#d9d2c6]">
+          Share your event date, villa details, guest count, dietary needs, and any special notes. We’ll confirm on
+          WhatsApp within minutes and plan everything for you.
+        </p>
+        <button
+          class="mt-8 w-full rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+          type="button"
+          on:click={openForm}
+        >
+          Open Request Form
+        </button>
       </div>
     </div>
   </section>
@@ -253,6 +326,16 @@
 
 <script lang="ts">
   let navOpen = false;
+  let formOpen = false;
+
+  const openForm = () => {
+    formOpen = true;
+    navOpen = false;
+  };
+
+  const closeForm = () => {
+    formOpen = false;
+  };
 
   const navLinks = [
     { label: 'About', href: '#about' },
