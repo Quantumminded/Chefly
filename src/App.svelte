@@ -50,9 +50,9 @@
       muted
       loop
       playsinline
-      poster="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80"
+      poster="/media/louis-hansel-0sYLBZjgTTw-unsplash.jpg"
     >
-      <source src="../public/media/hero-video.mp4" type="video/mp4" />
+      <source src="/media/hero-video.mp4" type="video/mp4" />
     </video>
     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/65 to-black/20"></div>
     <header class="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur">
