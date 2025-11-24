@@ -103,7 +103,7 @@
     <div class="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-24">
       <p class="text-sm uppercase tracking-[0.3em] text-[#d7c39f]/80">Lake Como • Private Dining</p>
       <h1 class="mt-6 max-w-3xl font-serif text-4xl leading-snug text-white drop-shadow md:text-6xl">
-        Your Private Chef on Lake Como — No Menus. No Planning. Just Arrive.
+        Your Private Chef on Lake Como — Tailored Menus, Effortless Experience
       </h1>
       <p class="mt-6 max-w-xl text-lg text-[#f7f1e3]/90">
         Tell us your preferences. We handle the rest.
@@ -312,46 +312,36 @@
     </div>
   </section>
 
-  <section id="about" class="mx-auto max-w-6xl px-6 py-16">
-    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-      <div>
-        <p class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">How it works</p>
-        <h2 class="mt-4 font-serif text-4xl">Effortless from arrival to dessert.</h2>
-        <div class="mt-8 space-y-8">
-          {#each steps as step, index}
-            <div class="flex gap-5">
-              <div class="text-lg font-semibold text-[#b6893f]">{String(index + 1).padStart(2, '0')}</div>
-              <div>
-                <h3 class="font-serif text-2xl">{step.title}</h3>
-                <p class="mt-2 text-[#d9d2c6]">{step.copy}</p>
-              </div>
+  <section id="about" class="mx-auto max-w-4xl px-6 py-20 text-center">
+    <p class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">How it works</p>
+    <h2 class="mt-4 font-serif text-4xl">Effortless from arrival to dessert.</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-[#d9d2c6]/90">
+      One message is all it takes. We choreograph the chef, menu, and service so you simply relax.
+    </p>
+
+    <div class="relative mx-auto mt-12 max-w-3xl">
+      <div class="space-y-12 md:space-y-14">
+        {#each steps as step, index}
+          <div class="relative flex flex-col items-center gap-4 text-center md:flex-row md:text-left">
+            <div class="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-black/60 font-semibold text-[#b6893f]">
+              {String(index + 1).padStart(2, '0')}
             </div>
-          {/each}
-        </div>
-        <button
-          class="mt-10 rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
-          type="button"
-          on:click={openForm}
-        >
-          Request Your Chef — 60 Seconds
-        </button>
-      </div>
-      <div class="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-        <p class="text-xs uppercase tracking-[0.3em] text-[#d9d2c6]">Ultra-short form</p>
-        <h3 class="mt-3 font-serif text-3xl">Arranging your dinner takes a minute.</h3>
-        <p class="mt-4 text-[#d9d2c6]">
-          Share your event date, villa details, guest count, dietary needs, and any special notes. We’ll confirm on
-          WhatsApp within minutes and plan everything for you.
-        </p>
-        <button
-          class="mt-8 w-full rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
-          type="button"
-          on:click={openForm}
-        >
-          Open Request Form
-        </button>
+            <div class="max-w-xl md:text-left">
+              <h3 class="font-serif text-2xl">{step.title}</h3>
+              <p class="mt-2 text-[#d9d2c6]">{step.copy}</p>
+            </div>
+          </div>
+        {/each}
       </div>
     </div>
+
+    <button
+      class="mx-auto mt-12 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+      type="button"
+      on:click={openForm}
+    >
+      Plan My Dinner
+    </button>
   </section>
 
   <section id="contact" class="px-6 pb-10 text-center text-sm text-[#bcb3a2]">
