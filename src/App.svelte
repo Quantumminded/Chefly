@@ -404,13 +404,28 @@
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
 
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-
     const payload: Record<string, FormDataEntryValue> = {};
     for (const [key, value] of formData.entries()) {
       payload[key] = value;
     }
-    // console.info('Fake request payload:', JSON.stringify(payload, null, 2));
+
+    const lines = [
+      'Richiesta nuova cena 👨‍🍳',
+      `Nome: ${payload.fullName || '-'}`,
+      `Email: ${payload.email || '-'}`,
+      `Data: ${payload.date || '-'}`,
+      `Villa: ${payload.location || '-'}`,
+      `Ospiti: ${payload.guests || '-'}`,
+      `Preferenze: ${payload.preference || '-'}`,
+      `Requisiti: ${payload.requirements || '-'}`,
+      `WhatsApp Cliente: ${payload.whatsapp || '-'}`,
+      `Note: ${payload.notes || '-'}`,
+      `Form inviato alle ${new Date().toLocaleString()}`
+    ];
+
+    const whatsappNumber = '4917621567199';
+    const message = encodeURIComponent(lines.join('\n'));
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
 
     submitting = false;
     submitMessage = 'Thanks! Your request is logged. We will follow up shortly.';
