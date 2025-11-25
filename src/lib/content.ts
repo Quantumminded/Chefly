@@ -1,7 +1,7 @@
 export const siteUrl = 'https://chefly10.vercel.app';
 
-export const heroPosterPath = '/media/hero-image.jpg';
-export const heroVideoSrc = '/media/hero-video2.mp4';
+export const heroPosterPath = '/media/hero-img.jpg';
+export const heroVideoSrc = '/media/hero-video2new.mp4';
 
 export const navLinks = [
   { label: 'About', href: '#about' },
@@ -47,22 +47,42 @@ export const galleryImages = [
   {
     src: '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.jpg',
     alt: 'Private chef searing fresh fish in a Lake Como villa kitchen',
-    caption: 'Seasonal tasting menu preparation'
+    caption: 'Seasonal tasting menu preparation',
+    srcset: {
+      avif: '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.avif',
+      webp: '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.webp',
+      jpg: '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.jpg'
+    }
   },
   {
-    src: '/media/signal-2025-11-21-103942.jpeg',
+    src: '/media/signal-2025-11-21-103942.webp',
     alt: 'Elegant table set on a terrace overlooking Lake Como',
-    caption: 'Lakeside table styling'
+    caption: 'Lakeside table styling',
+    srcset: {
+      avif: '/media/signal-2025-11-21-103942.avif',
+      webp: '/media/signal-2025-11-21-103942.webp',
+      jpg: '/media/signal-2025-11-21-103942.jpeg'
+    }
   },
   {
     src: '/media/creative-assortment-delicious-food.jpg',
     alt: 'Handmade pasta with micro herbs on a black stone plate',
-    caption: 'Handmade pasta course'
+    caption: 'Handmade pasta course',
+    srcset: {
+      avif: '/media/creative-assortment-delicious-food.avif',
+      webp: '/media/creative-assortment-delicious-food.webp',
+      jpg: '/media/creative-assortment-delicious-food.jpg'
+    }
   },
   {
-    src: '/media/signal-2025-11-20-175804.jpeg',
+    src: '/media/signal-2025-11-20-175804.webp',
     alt: 'Chef pouring sauce over a plated dish',
-    caption: 'Live plating at your villa'
+    caption: 'Live plating at your villa',
+    srcset: {
+      avif: '/media/signal-2025-11-20-175804.avif',
+      webp: '/media/signal-2025-11-20-175804.webp',
+      jpg: '/media/signal-2025-11-20-175804.jpeg'
+    }
   }
 ];
 

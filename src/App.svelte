@@ -16,14 +16,20 @@
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://cheflycomo.com/" />
-  <meta property="og:image" content="https://cheflycomo.com/media/louis-hansel-0sYLBZjgTTw-unsplash.jpg" />
+  <meta property="og:image" content="https://chefly10.vercel.app/media/hero-img.jpg" />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chefly Como | Private Chef on Lake Como" />
   <meta
     name="twitter:description"
     content="Tailored private chef experiences for Lake Como villas. Seafood, vegan, classic Italian and more."
   />
-  <meta name="twitter:image" content="https://cheflycomo.com/media/louis-hansel-0sYLBZjgTTw-unsplash.jpg" />
+  <meta name="twitter:image" content="https://chefly10.vercel.app/media/hero-img.jpg" />
+  <!-- Preload modern image formats for LCP candidate (hero poster) -->
+  <link rel="preload" as="image" href="/media/hero-img.avif" type="image/avif" fetchpriority="high" />
+  <link rel="preload" as="image" href="/media/hero-img.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/media/hero-img.jpg" type="image/jpeg" fetchpriority="high" />
   <link
     rel="preconnect"
     href="https://fonts.googleapis.com"
@@ -56,6 +62,9 @@
       preload="metadata"
       aria-label="Cinematic view of a private chef preparing dishes"
       poster={heroPoster}
+      width="1920"
+      height="1080"
+      fetchpriority="high"
     >
       <source src={heroVideoSrc} type="video/mp4" />
     </video>
@@ -273,20 +282,64 @@
     </div>
   {/if}
 
-  <ServicesSection services={services} />
-
-  <GallerySection images={galleryImages} />
-
-  <HowItWorksSection {steps}>
+  {#if ServicesSection}
+    <svelte:component this={ServicesSection} services={services} />
+  {:else}
     <button
-      slot="cta"
-      class="mx-auto mt-12 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
       type="button"
-      on:click={openForm}
+      class="mx-auto max-w-6xl px-6 py-12 text-center"
+      on:mouseenter={() => preloadServices()}
+      on:click={() => loadServices()}
+      aria-label="Load services section"
     >
-      Plan My Dinner
+      <p class="text-sm text-[#d9d2c6]/80">Loading services… (hover or click to load)</p>
     </button>
-  </HowItWorksSection>
+  {/if}
+
+  {#if GallerySection}
+    <svelte:component this={GallerySection} images={galleryImages} />
+  {:else}
+    <button
+      type="button"
+      class="mx-auto max-w-6xl px-6 py-12 text-center"
+      on:mouseenter={() => preloadGallery()}
+      on:click={() => loadGallery()}
+      aria-label="Load gallery"
+    >
+      <p class="text-sm text-[#d9d2c6]/80">Loading gallery… (hover or click to load)</p>
+    </button>
+  {/if}
+
+  {#if HowItWorksSection}
+    <svelte:component this={HowItWorksSection} {steps}>
+      <button
+        slot="cta"
+        class="mx-auto mt-12 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+        type="button"
+        on:click={openForm}
+      >
+        Plan My Dinner
+      </button>
+    </svelte:component>
+  {:else}
+    <div
+      class="mx-auto max-w-6xl px-6 py-12 text-center"
+      on:mouseenter={() => preloadHow()}
+      on:click={() => loadHow()}
+      on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadHow(); } }}
+      role="button"
+      tabindex="0"
+      aria-label="Load how it works"
+    >
+      <p class="text-sm text-[#d9d2c6]/80">Learn how it works — hover or click to load</p>
+      <button
+        class="mx-auto mt-6 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242]"
+        on:click={() => { loadHow(); openForm(); }}
+      >
+        Plan My Dinner
+      </button>
+    </div>
+  {/if}
 
   <section class="bg-[#06080d] px-6 py-16" aria-labelledby="chef-menu-heading">
     <div class="mx-auto max-w-5xl text-center">
@@ -378,7 +431,19 @@
     <p class="mt-1">Rated 4.9/5 by international guests.</p>
   </section>
 
-  <FaqSection {faqs} />
+  {#if FaqSection}
+    <svelte:component this={FaqSection} {faqs} />
+  {:else}
+    <button
+      type="button"
+      class="mx-auto max-w-6xl px-6 py-12 text-center"
+      on:mouseenter={() => preloadFaq()}
+      on:click={() => loadFaq()}
+      aria-label="Load FAQ"
+    >
+      <p class="text-sm text-[#d9d2c6]/80">Frequently asked questions — hover or click to load</p>
+    </button>
+  {/if}
 
   <footer class="border-t border-white/10 px-6 py-10 text-center text-xs uppercase tracking-[0.3em] text-[#bcb3a2]">
     <p>Curated Private Chefs for Lake Como</p>
@@ -391,10 +456,41 @@
 </main>
 
 <script lang="ts">
-  import ServicesSection from './components/ServicesSection.svelte';
-  import GallerySection from './components/GallerySection.svelte';
-  import HowItWorksSection from './components/HowItWorksSection.svelte';
-  import FaqSection from './components/FaqSection.svelte';
+  import { onMount } from 'svelte';
+  // Dynamically-imported components (reduce initial bundle)
+  let ServicesSection: any = null;
+  let GallerySection: any = null;
+  let HowItWorksSection: any = null;
+  let FaqSection: any = null;
+
+  // lazy-load helpers: preload (warm) and actual load
+  const preloadServices = () => { void import('./components/ServicesSection.svelte'); };
+  const loadServices = async () => {
+    if (!ServicesSection) {
+      ServicesSection = (await import('./components/ServicesSection.svelte')).default;
+    }
+  };
+
+  const preloadGallery = () => { void import('./components/GallerySection.svelte'); };
+  const loadGallery = async () => {
+    if (!GallerySection) {
+      GallerySection = (await import('./components/GallerySection.svelte')).default;
+    }
+  };
+
+  const preloadHow = () => { void import('./components/HowItWorksSection.svelte'); };
+  const loadHow = async () => {
+    if (!HowItWorksSection) {
+      HowItWorksSection = (await import('./components/HowItWorksSection.svelte')).default;
+    }
+  };
+
+  const preloadFaq = () => { void import('./components/FaqSection.svelte'); };
+  const loadFaq = async () => {
+    if (!FaqSection) {
+      FaqSection = (await import('./components/FaqSection.svelte')).default;
+    }
+  };
   import {
     siteUrl,
     heroPosterPath,
