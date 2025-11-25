@@ -17,7 +17,7 @@
 
 <section id="gallery" class="bg-[#090b0f] px-6 py-12" aria-labelledby="gallery-heading">
   <div class="mx-auto max-w-6xl text-center">
-    <p class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">Recent villas</p>
+    <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Recent villas</p>
     <h2 id="gallery-heading" class="mt-2 font-serif text-3xl">Scenes from bespoke dinners</h2>
     <p class="mt-2 text-[#d9d2c6]/80">
       Chef-prepared plates, lakeside tablescapes, and private tasting menus captured this season.

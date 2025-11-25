@@ -285,29 +285,17 @@
   {#if ServicesSection}
     <svelte:component this={ServicesSection} services={services} />
   {:else}
-    <button
-      type="button"
-      class="mx-auto max-w-6xl px-6 py-12 text-center"
-      on:mouseenter={() => preloadServices()}
-      on:click={() => loadServices()}
-      aria-label="Load services section"
-    >
-      <p class="text-sm text-[#d9d2c6]/80">Loading services… (hover or click to load)</p>
-    </button>
+    <div bind:this={servicesAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
+      <p class="text-sm text-[#d9d2c6]/80">Loading services…</p>
+    </div>
   {/if}
 
   {#if GallerySection}
     <svelte:component this={GallerySection} images={galleryImages} />
   {:else}
-    <button
-      type="button"
-      class="mx-auto max-w-6xl px-6 py-12 text-center"
-      on:mouseenter={() => preloadGallery()}
-      on:click={() => loadGallery()}
-      aria-label="Load gallery"
-    >
-      <p class="text-sm text-[#d9d2c6]/80">Loading gallery… (hover or click to load)</p>
-    </button>
+    <div bind:this={galleryAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
+      <p class="text-sm text-[#d9d2c6]/80">Loading gallery…</p>
+    </div>
   {/if}
 
   {#if HowItWorksSection}
@@ -322,19 +310,11 @@
       </button>
     </svelte:component>
   {:else}
-    <div
-      class="mx-auto max-w-6xl px-6 py-12 text-center"
-      on:mouseenter={() => preloadHow()}
-      on:click={() => loadHow()}
-      on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadHow(); } }}
-      role="button"
-      tabindex="0"
-      aria-label="Load how it works"
-    >
-      <p class="text-sm text-[#d9d2c6]/80">Learn how it works — hover or click to load</p>
+    <div bind:this={howAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
+      <p class="text-sm text-[#d9d2c6]/80">Learn how it works</p>
       <button
         class="mx-auto mt-6 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242]"
-        on:click={() => { loadHow(); openForm(); }}
+        on:click={() => { void loadHow(); openForm(); }}
       >
         Plan My Dinner
       </button>
@@ -343,7 +323,7 @@
 
   <section class="bg-[#06080d] px-6 py-16" aria-labelledby="chef-menu-heading">
     <div class="mx-auto max-w-5xl text-center">
-      <p class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">Chef & Menu Studio</p>
+      <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Chef & Menu Studio</p>
       <h2 id="chef-menu-heading" class="mt-4 font-serif text-3xl">Menus written around your guests, not templates</h2>
       <p class="mt-3 text-[#d9d2c6]/80">
         We pair you with chefs trained in Michelin-starred brigades across Milan, Paris, and New York—each adapting the
@@ -351,8 +331,8 @@
       </p>
     </div>
     <div class="mx-auto mt-12 grid max-w-6xl gap-8 lg:grid-cols-3">
-      <article class="rounded-3xl border border-white/10 bg-white/5 p-6 text-left">
-        <h3 class="text-sm uppercase tracking-[0.3em] text-[#b6893f]/80">Sample Tasting Menu</h3>
+      <article class="rounded-3xl border border-white/10 bg-white/10 p-6 text-left">
+        <h3 class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Sample Tasting Menu</h3>
         <p class="mt-3 font-serif text-2xl">Lake Como Degustation</p>
         <ul class="mt-4 space-y-2 text-sm text-white/80">
           <li>Crudo of missoltini with Amalfi lemon granita</li>
@@ -362,8 +342,8 @@
         </ul>
         <p class="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">Designed for 6–12 guests</p>
       </article>
-      <article class="rounded-3xl border border-white/10 bg-white/5 p-6 text-left">
-        <h3 class="text-sm uppercase tracking-[0.3em] text-[#b6893f]/80">Chef Backgrounds</h3>
+      <article class="rounded-3xl border border-white/10 bg-white/10 p-6 text-left">
+        <h3 class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Chef Backgrounds</h3>
         <p class="mt-3 font-serif text-2xl">Elite culinary team</p>
         <ul class="mt-4 space-y-2 text-sm text-white/80">
           <li>Former sous-chefs at Il Sereno, Armani Ristorante, and Osteria Francescana partner kitchens</li>
@@ -373,8 +353,8 @@
         </ul>
         <p class="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">Bookable for one-offs or weeklong stays</p>
       </article>
-      <article class="rounded-3xl border border-white/10 bg-white/5 p-6 text-left">
-        <h3 class="text-sm uppercase tracking-[0.3em] text-[#b6893f]/80">Formats We Run</h3>
+      <article class="rounded-3xl border border-white/10 bg-white/10 p-6 text-left">
+        <h3 class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Formats We Run</h3>
         <p class="mt-3 font-serif text-2xl">Choose your experience</p>
         <ul class="mt-4 space-y-2 text-sm text-white/80">
           <li>Aperitivo cruises with canapés + champagne service</li>
@@ -398,7 +378,7 @@
 
   <section class="bg-[#090b0f] px-6 py-16" aria-labelledby="testimonials-heading">
     <div class="mx-auto max-w-4xl text-center">
-      <p class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">Testimonials</p>
+      <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Testimonials</p>
       <h2 id="testimonials-heading" class="mt-4 font-serif text-3xl">Guests who hosted unforgettable dinners</h2>
       <p class="mt-2 text-[#d9d2c6]/80">
         “The chef treated our villa like a Michelin restaurant. Every course was a story about Lake Como.” — Isabella P.
@@ -434,15 +414,9 @@
   {#if FaqSection}
     <svelte:component this={FaqSection} {faqs} />
   {:else}
-    <button
-      type="button"
-      class="mx-auto max-w-6xl px-6 py-12 text-center"
-      on:mouseenter={() => preloadFaq()}
-      on:click={() => loadFaq()}
-      aria-label="Load FAQ"
-    >
-      <p class="text-sm text-[#d9d2c6]/80">Frequently asked questions — hover or click to load</p>
-    </button>
+    <div bind:this={faqAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
+      <p class="text-sm text-[#d9d2c6]/80">Frequently asked questions</p>
+    </div>
   {/if}
 
   <footer class="border-t border-white/10 px-6 py-10 text-center text-xs uppercase tracking-[0.3em] text-[#bcb3a2]">
@@ -456,12 +430,19 @@
 </main>
 
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   // Dynamically-imported components (reduce initial bundle)
   let ServicesSection: any = null;
   let GallerySection: any = null;
   let HowItWorksSection: any = null;
   let FaqSection: any = null;
+
+  // DOM anchors used to auto-load sections when they come into view
+  let servicesAnchor: HTMLElement | null = null;
+  let galleryAnchor: HTMLElement | null = null;
+  let howAnchor: HTMLElement | null = null;
+  let faqAnchor: HTMLElement | null = null;
+  const _timers: number[] = [];
 
   // lazy-load helpers: preload (warm) and actual load
   const preloadServices = () => { void import('./components/ServicesSection.svelte'); };
@@ -491,6 +472,55 @@
       FaqSection = (await import('./components/FaqSection.svelte')).default;
     }
   };
+
+  // Auto-load dynamic sections when they scroll into view (or after a short fallback timeout)
+  onMount(() => {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const el = entry.target as HTMLElement;
+        if (el === servicesAnchor) {
+          preloadServices();
+          void loadServices();
+          observer.unobserve(el);
+        } else if (el === galleryAnchor) {
+          preloadGallery();
+          void loadGallery();
+          observer.unobserve(el);
+        } else if (el === howAnchor) {
+          preloadHow();
+          void loadHow();
+          observer.unobserve(el);
+        } else if (el === faqAnchor) {
+          preloadFaq();
+          void loadFaq();
+          observer.unobserve(el);
+        }
+      }
+    }, { root: null, rootMargin: '300px', threshold: 0.05 });
+
+    if (servicesAnchor) observer.observe(servicesAnchor);
+    if (galleryAnchor) observer.observe(galleryAnchor);
+    if (howAnchor) observer.observe(howAnchor);
+    if (faqAnchor) observer.observe(faqAnchor);
+
+    // Fallback timers: if IntersectionObserver isn't supported or the user never scrolls,
+    // load critical sections after a short delay so content is visible without clicking.
+    _timers.push(window.setTimeout(() => { if (!ServicesSection) { preloadServices(); void loadServices(); } }, 2500));
+    _timers.push(window.setTimeout(() => { if (!GallerySection) { preloadGallery(); void loadGallery(); } }, 3200));
+    _timers.push(window.setTimeout(() => { if (!HowItWorksSection) { preloadHow(); void loadHow(); } }, 4200));
+    _timers.push(window.setTimeout(() => { if (!FaqSection) { preloadFaq(); void loadFaq(); } }, 5000));
+
+    return () => {
+      observer.disconnect();
+      for (const t of _timers) clearTimeout(t);
+    };
+  });
+
+  onDestroy(() => {
+    // ensure timers cleared if component unmounts unexpectedly
+    for (const t of _timers) clearTimeout(t);
+  });
   import {
     siteUrl,
     heroPosterPath,

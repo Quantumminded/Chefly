@@ -18,12 +18,12 @@
 
 <section id="services" class="mx-auto max-w-6xl px-6 py-16" aria-labelledby="services-heading">
   <div class="text-center">
-    <p class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">Why travellers book us</p>
+    <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Why travellers book us</p>
     <h2 id="services-heading" class="mt-4 font-serif text-3xl">Designed for villa guests who want zero effort</h2>
   </div>
   <div class="mt-10 grid gap-8 md:grid-cols-3">
     {#each services as service}
-      <article class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-lg shadow-black/20" aria-label={service.title}>
+      <article class="rounded-2xl border border-white/10 bg-white/10 p-6 text-left shadow-lg shadow-black/20" aria-label={service.title}>
         <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#b6893f]/20 text-white" aria-hidden="true">
           {@html iconMap[service.icon] || iconMap.clock}
         </div>
