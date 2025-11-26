@@ -579,7 +579,7 @@
       `Form inviato alle ${new Date().toLocaleString()}`
     ];
 
-    const whatsappNumber = '39758090700';
+    const whatsappNumber = '4917621567199';
     const message = encodeURIComponent(lines.join('\n'));
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
 
