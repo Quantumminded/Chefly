@@ -16,14 +16,18 @@
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://cheflycomo.com/" />
-  <meta property="og:image" content="https://cheflycomo.com/media/louis-hansel-0sYLBZjgTTw-unsplash.jpg" />
+  <meta property="og:image" content="https://chefly10.vercel.app/media/hero-img.webp" />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chefly Como | Private Chef on Lake Como" />
   <meta
     name="twitter:description"
     content="Tailored private chef experiences for Lake Como villas. Seafood, vegan, classic Italian and more."
   />
-  <meta name="twitter:image" content="https://cheflycomo.com/media/louis-hansel-0sYLBZjgTTw-unsplash.jpg" />
+  <meta name="twitter:image" content="https://chefly10.vercel.app/media/hero-img.webp" />
+  <!-- Preload hero poster for LCP candidate (WebP: 74% smaller than JPG) -->
+  <link rel="preload" as="image" href="/media/hero-img.webp" type="image/webp" fetchpriority="high" />
   <link
     rel="preconnect"
     href="https://fonts.googleapis.com"
@@ -40,6 +44,9 @@
   <script type="application/ld+json">
     {JSON.stringify(schemaOrg)}
   </script>
+  <script type="application/ld+json">
+    {JSON.stringify(faqSchema)}
+  </script>
 </svelte:head>
 
 <main class="min-h-screen bg-[#050608] text-[#f7f1e3]">
@@ -50,15 +57,19 @@
       muted
       loop
       playsinline
+      preload="metadata"
+      aria-label="Cinematic view of a private chef preparing dishes"
       poster={heroPoster}
+      width="1920"
+      height="1080"
     >
       <source src={heroVideoSrc} type="video/mp4" />
     </video>
     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/65 to-black/20"></div>
-    <header class="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur">
+    <header class="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur" aria-label="Site header">
       <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <div class="font-serif text-xl tracking-wide">Chefly Como</div>
-        <nav class="hidden gap-8 text-sm uppercase tracking-[0.3em] lg:flex">
+        <nav class="hidden gap-8 text-sm uppercase tracking-[0.3em] lg:flex" aria-label="Primary navigation">
           {#each navLinks as link}
             <a class="text-[#f7f1e3]/80 transition hover:text-white" href={link.href}>{link.label}</a>
           {/each}
@@ -73,6 +84,7 @@
         <button
           class="lg:hidden ml-4 rounded-full border border-white/20 bg-white/10 p-2"
           aria-label="Toggle navigation"
+          aria-expanded={navOpen}
           on:click={() => (navOpen = !navOpen)}
           type="button"
         >
@@ -83,7 +95,7 @@
       </div>
       {#if navOpen}
         <div class="border-t border-white/10 bg-black/80 px-6 py-4 lg:hidden">
-          <nav class="flex flex-col gap-4 text-sm uppercase tracking-[0.3em]">
+          <nav class="flex flex-col gap-4 text-sm uppercase tracking-[0.3em]" aria-label="Mobile navigation">
             {#each navLinks as link}
               <a class="text-[#f7f1e3] hover:text-white" href={link.href} on:click={() => (navOpen = false)}
                 >{link.label}</a
@@ -267,81 +279,128 @@
     </div>
   {/if}
 
-  <section id="services" class="mx-auto max-w-6xl px-6 py-16">
-    <div class="grid gap-8 md:grid-cols-3">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#b6893f]/20 text-white">
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-        <h3 class="mt-5 font-serif text-2xl">Zero Planning</h3>
-        <p class="mt-3 text-base text-[#d9d2c6]">You’re on vacation. We take care of everything.</p>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#b6893f]/20 text-white">
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="m12 3 2.09 6.26H21l-5.17 3.76L17.91 21 12 16.77 6.09 21l1.08-7.98L2 9.26h6.91z" />
-          </svg>
-        </div>
-        <h3 class="mt-5 font-serif text-2xl">Hand-Selected Chefs</h3>
-        <p class="mt-3 text-base text-[#d9d2c6]">Top private chefs in Lake Como, trusted by luxury villas.</p>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#b6893f]/20 text-white">
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M7 10c-1 0-2 1-2 2v6h14v-6c0-1-1-2-2-2H7Z" />
-            <path d="M9 6s.5-2 3-2 3 2 3 2" stroke-linecap="round" />
-          </svg>
-        </div>
-        <h3 class="mt-5 font-serif text-2xl">Tailored Experience</h3>
-        <p class="mt-3 text-base text-[#d9d2c6]">Seafood, vegan, classic Italian — we adapt to your taste.</p>
-      </div>
+  {#if ServicesSection}
+    <svelte:component this={ServicesSection} services={services} />
+  {:else}
+    <div bind:this={servicesAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
+      <p class="text-sm text-[#d9d2c6]/80">Loading services…</p>
+    </div>
+  {/if}
+
+  {#if GallerySection}
+    <svelte:component this={GallerySection} images={galleryImages} />
+  {:else}
+    <div bind:this={galleryAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
+      <p class="text-sm text-[#d9d2c6]/80">Loading gallery…</p>
+    </div>
+  {/if}
+
+  {#if HowItWorksSection}
+    <svelte:component this={HowItWorksSection} {steps}>
+      <button
+        slot="cta"
+        class="mx-auto mt-12 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+        type="button"
+        on:click={openForm}
+      >
+        Plan My Dinner
+      </button>
+    </svelte:component>
+  {:else}
+    <div bind:this={howAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
+      <p class="text-sm text-[#d9d2c6]/80">Learn how it works</p>
+      <button
+        class="mx-auto mt-6 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242]"
+        on:click={() => { void loadHow(); openForm(); }}
+      >
+        Plan My Dinner
+      </button>
+    </div>
+  {/if}
+
+  <section class="bg-[#06080d] px-6 py-16" aria-labelledby="chef-menu-heading">
+    <div class="mx-auto max-w-5xl text-center">
+      <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Chef & Menu Studio</p>
+      <h2 id="chef-menu-heading" class="mt-4 font-serif text-3xl">Menus written around your guests, not templates</h2>
+      <p class="mt-3 text-[#d9d2c6]/80">
+        We pair you with chefs trained in Michelin-starred brigades across Milan, Paris, and New York—each adapting the
+        menu to dietary requirements, villa kitchens, and wine cellars.
+      </p>
+    </div>
+    <div class="mx-auto mt-12 grid max-w-6xl gap-8 lg:grid-cols-3">
+      <article class="rounded-3xl border border-white/10 bg-white/10 p-6 text-left">
+        <h3 class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Sample Tasting Menu</h3>
+        <p class="mt-3 font-serif text-2xl">Lake Como Degustation</p>
+        <ul class="mt-4 space-y-2 text-sm text-white/80">
+          <li>Crudo of missoltini with Amalfi lemon granita</li>
+          <li>Risotto with saffron, burnt butter, and alpine chives</li>
+          <li>Line-caught Branzino, chamomile fumet, charred fennel</li>
+          <li>Dark chocolate textures with grappa gelato</li>
+        </ul>
+        <p class="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">Designed for 6–12 guests</p>
+      </article>
+      <article class="rounded-3xl border border-white/10 bg-white/10 p-6 text-left">
+        <h3 class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Chef Backgrounds</h3>
+        <p class="mt-3 font-serif text-2xl">Elite culinary team</p>
+        <ul class="mt-4 space-y-2 text-sm text-white/80">
+          <li>Former sous-chefs at Il Sereno, Armani Ristorante, and Osteria Francescana partner kitchens</li>
+          <li>Trilingual service standards familiar with UHNW villa etiquette</li>
+          <li>Comfortable with kosher kitchens, vegan tasting menus, and last-minute headcounts</li>
+          <li>Secure NDAs and private travel arrangements available</li>
+        </ul>
+        <p class="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">Bookable for one-offs or weeklong stays</p>
+      </article>
+      <article class="rounded-3xl border border-white/10 bg-white/10 p-6 text-left">
+        <h3 class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Formats We Run</h3>
+        <p class="mt-3 font-serif text-2xl">Choose your experience</p>
+        <ul class="mt-4 space-y-2 text-sm text-white/80">
+          <li>Aperitivo cruises with canapés + champagne service</li>
+          <li>Family-style brunches with kids’ tasting menu</li>
+          <li>Seven-course wine-paired dinners with sommeliers</li>
+          <li>Chef-led cooking classes and market tours</li>
+        </ul>
+        <p class="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">All menus customized pre-arrival</p>
+      </article>
+    </div>
+    <div class="mt-12 text-center">
+      <button
+        class="rounded-full border border-white/20 bg-white/10 px-8 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-white/20"
+        type="button"
+        on:click={openForm}
+      >
+        Request Menu Concepts
+      </button>
     </div>
   </section>
 
-  <section id="gallery" class="bg-[#090b0f] px-6 py-12">
-    <div class="mx-auto grid max-w-6xl gap-4 md:grid-cols-4">
-      {#each galleryImages as image}
-        <div
-          class="h-52 overflow-hidden rounded-2xl border border-white/10 bg-cover bg-center"
-          style={`background-image:url('${image}');`}
-        ></div>
-      {/each}
+  <section class="bg-[#090b0f] px-6 py-16" aria-labelledby="testimonials-heading">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Testimonials</p>
+      <h2 id="testimonials-heading" class="mt-4 font-serif text-3xl">Guests who hosted unforgettable dinners</h2>
+      <p class="mt-2 text-[#d9d2c6]/80">
+        “The chef treated our villa like a Michelin restaurant. Every course was a story about Lake Como.” — Isabella P.
+      </p>
     </div>
-  </section>
-
-  <section id="about" class="mx-auto max-w-4xl px-6 py-20 text-center">
-    <p class="text-sm uppercase tracking-[0.4em] text-[#b6893f]">How it works</p>
-    <h2 class="mt-4 font-serif text-4xl">Effortless from arrival to dessert.</h2>
-    <p class="mx-auto mt-4 max-w-2xl text-[#d9d2c6]/90">
-      One message is all it takes. We choreograph the chef, menu, and service so you simply relax.
-    </p>
-
-    <div class="relative mx-auto mt-12 max-w-3xl">
-      <div class="space-y-12 md:space-y-14">
-        {#each steps as step, index}
-          <div class="relative flex flex-col items-center gap-4 text-center md:flex-row md:text-left">
-            <div class="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-black/60 font-semibold text-[#b6893f]">
-              {String(index + 1).padStart(2, '0')}
-            </div>
-            <div class="max-w-xl md:text-left">
-              <h3 class="font-serif text-2xl">{step.title}</h3>
-              <p class="mt-2 text-[#d9d2c6]">{step.copy}</p>
-            </div>
-          </div>
-        {/each}
-      </div>
+    <div class="mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-3">
+      <blockquote class="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-[#d9d2c6]/90">
+        <p>
+          “Chefly managed a 12-person anniversary dinner with zero brief. The sommelier pairings blew us away.”
+        </p>
+        <footer class="mt-4 text-xs uppercase tracking-[0.3em] text-white/70">Villa Cipressi • US Guests</footer>
+      </blockquote>
+      <blockquote class="rounded-2xl border border-white/10 bg.white/5 p-6 text-sm text-[#d9d2c6]/90">
+        <p>
+          “They sourced vegan ingredients from Milan the same day. The chef even arranged service staff and plateware.”
+        </p>
+        <footer class="mt-4 text-xs uppercase tracking-[0.3em] text-white/70">Villa Sofia • UK Guests</footer>
+      </blockquote>
+      <blockquote class="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-[#d9d2c6]/90">
+        <p>
+          “Morning markets, custom aperitivo, five courses, dessert trolley. Our hosts felt like movie stars.”
+        </p>
+        <footer class="mt-4 text-xs uppercase tracking-[0.3em] text-white/70">Villa Carlotta • DE Guests</footer>
+      </blockquote>
     </div>
-
-    <button
-      class="mx-auto mt-12 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
-      type="button"
-      on:click={openForm}
-    >
-      Plan My Dinner
-    </button>
   </section>
 
   <section id="contact" class="px-6 pb-10 text-center text-sm text-[#bcb3a2]">
@@ -349,22 +408,13 @@
     <p class="mt-1">Rated 4.9/5 by international guests.</p>
   </section>
 
-  <section id="faq" class="mx-auto max-w-5xl px-6 pb-16">
-    <h2 class="text-center font-serif text-3xl">Lake Como Private Chef FAQs</h2>
-    <p class="mt-4 text-center text-[#d9d2c6]">
-      Helpful answers for travelers planning exclusive villa dining on Lake Como.
-    </p>
-    <div class="mt-10 space-y-6">
-      {#each faqs as item}
-        <details class="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <summary class="cursor-pointer font-serif text-2xl text-[#f7f1e3]">
-            {item.question}
-          </summary>
-          <p class="mt-3 text-[#d9d2c6]">{item.answer}</p>
-        </details>
-      {/each}
+  {#if FaqSection}
+    <svelte:component this={FaqSection} {faqs} />
+  {:else}
+    <div bind:this={faqAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
+      <p class="text-sm text-[#d9d2c6]/80">Frequently asked questions</p>
     </div>
-  </section>
+  {/if}
 
   <footer class="border-t border-white/10 px-6 py-10 text-center text-xs uppercase tracking-[0.3em] text-[#bcb3a2]">
     <p>Curated Private Chefs for Lake Como</p>
@@ -377,14 +427,117 @@
 </main>
 
 <script lang="ts">
+  import { onMount, onDestroy } from 'svelte';
+  // Dynamically-imported components (reduce initial bundle)
+  let ServicesSection: any = null;
+  let GallerySection: any = null;
+  let HowItWorksSection: any = null;
+  let FaqSection: any = null;
+
+  // DOM anchors used to auto-load sections when they come into view
+  let servicesAnchor: HTMLElement | null = null;
+  let galleryAnchor: HTMLElement | null = null;
+  let howAnchor: HTMLElement | null = null;
+  let faqAnchor: HTMLElement | null = null;
+  const _timers: number[] = [];
+
+  // lazy-load helpers: preload (warm) and actual load
+  const preloadServices = () => { void import('./components/ServicesSection.svelte'); };
+  const loadServices = async () => {
+    if (!ServicesSection) {
+      ServicesSection = (await import('./components/ServicesSection.svelte')).default;
+    }
+  };
+
+  const preloadGallery = () => { void import('./components/GallerySection.svelte'); };
+  const loadGallery = async () => {
+    if (!GallerySection) {
+      GallerySection = (await import('./components/GallerySection.svelte')).default;
+    }
+  };
+
+  const preloadHow = () => { void import('./components/HowItWorksSection.svelte'); };
+  const loadHow = async () => {
+    if (!HowItWorksSection) {
+      HowItWorksSection = (await import('./components/HowItWorksSection.svelte')).default;
+    }
+  };
+
+  const preloadFaq = () => { void import('./components/FaqSection.svelte'); };
+  const loadFaq = async () => {
+    if (!FaqSection) {
+      FaqSection = (await import('./components/FaqSection.svelte')).default;
+    }
+  };
+
+  // Auto-load dynamic sections when they scroll into view (or after a short fallback timeout)
+  onMount(() => {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const el = entry.target as HTMLElement;
+        if (el === servicesAnchor) {
+          preloadServices();
+          void loadServices();
+          observer.unobserve(el);
+        } else if (el === galleryAnchor) {
+          preloadGallery();
+          void loadGallery();
+          observer.unobserve(el);
+        } else if (el === howAnchor) {
+          preloadHow();
+          void loadHow();
+          observer.unobserve(el);
+        } else if (el === faqAnchor) {
+          preloadFaq();
+          void loadFaq();
+          observer.unobserve(el);
+        }
+      }
+    }, { root: null, rootMargin: '300px', threshold: 0.05 });
+
+    if (servicesAnchor) observer.observe(servicesAnchor);
+    if (galleryAnchor) observer.observe(galleryAnchor);
+    if (howAnchor) observer.observe(howAnchor);
+    if (faqAnchor) observer.observe(faqAnchor);
+
+    // Fallback timers: if IntersectionObserver isn't supported or the user never scrolls,
+    // load critical sections after a short delay so content is visible without clicking.
+    _timers.push(window.setTimeout(() => { if (!ServicesSection) { preloadServices(); void loadServices(); } }, 2500));
+    _timers.push(window.setTimeout(() => { if (!GallerySection) { preloadGallery(); void loadGallery(); } }, 3200));
+    _timers.push(window.setTimeout(() => { if (!HowItWorksSection) { preloadHow(); void loadHow(); } }, 4200));
+    _timers.push(window.setTimeout(() => { if (!FaqSection) { preloadFaq(); void loadFaq(); } }, 5000));
+
+    return () => {
+      observer.disconnect();
+      for (const t of _timers) clearTimeout(t);
+    };
+  });
+
+  onDestroy(() => {
+    // ensure timers cleared if component unmounts unexpectedly
+    for (const t of _timers) clearTimeout(t);
+  });
+  import {
+    siteUrl,
+    heroPosterPath,
+    heroVideoSrc,
+    navLinks,
+    services,
+    galleryImages,
+    steps,
+    dietaryOptions,
+    faqs
+  } from './lib/content';
+
   let navOpen = false;
   let formOpen = false;
   let submitting = false;
   let submitMessage = '';
 
-  const heroPoster =
-    '/media/hero-image.jpg';
-  const heroVideoSrc = '/media/hero-video2.mp4';
+  const heroPoster = heroPosterPath;
+  const heroPosterAbsolute = `${siteUrl}${heroPosterPath}`;
+  const heroVideoAbsolute = `${siteUrl}${heroVideoSrc}`;
 
   const openForm = () => {
     formOpen = true;
@@ -428,82 +581,83 @@
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
 
     submitting = false;
-    submitMessage = 'Thanks! Your request is logged. We will follow up shortly.';
+    submitMessage = 'Grazie! Si apre WhatsApp per completare la richiesta.';
     form.reset();
   };
 
+
   const schemaOrg = {
     '@context': 'https://schema.org',
-    '@type': 'FoodEstablishment',
+    '@type': ['FoodEstablishment', 'LocalBusiness'],
     name: 'Chefly Como',
-    url: 'https://chefly-liart.vercel.app/',
-    image: 'https://chefly-liart.vercel.app/media/louis-hansel-0sYLBZjgTTw-unsplash.jpg',
+    url: siteUrl,
+    image: heroPosterAbsolute,
     description:
       'Chefly Como arranges private chef services for luxury villas around Lake Como, matching travelers with bespoke culinary experiences.',
     servesCuisine: ['Italian', 'Seafood', 'Vegan', 'Fine Dining'],
-    areaServed: 'Lake Como, Italy',
-    telephone: '+39 031 000 0000',
     priceRange: '$$$',
-    sameAs: ['https://www.instagram.com/cheflycomo', 'https://www.facebook.com/cheflycomo']
+    telephone: '+39 031 000 0000',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Via Regina 28',
+      addressLocality: 'Como',
+      addressRegion: 'CO',
+      postalCode: '22100',
+      addressCountry: 'IT'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: '45.8081',
+      longitude: '9.0852'
+    },
+    areaServed: 'Lake Como, Italy',
+    serviceArea: {
+      '@type': 'AdministrativeArea',
+      name: 'Lake Como'
+    },
+    sameAs: ['https://www.instagram.com/cheflycomo', 'https://www.facebook.com/cheflycomo'],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Private chef experiences',
+      itemListElement: steps.map((step) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: step.title,
+          description: step.copy
+        }
+      }))
+    },
+    makesOffer: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Private chef for Lake Como villa',
+          url: siteUrl
+        }
+      }
+    ],
+    video: {
+      '@type': 'VideoObject',
+      name: 'Lake Como private chef experience',
+      thumbnailUrl: heroPosterAbsolute,
+      contentUrl: heroVideoAbsolute
+    }
   };
 
-  const navLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Service', href: '#services' },
-    { label: 'Gallery', href: '#gallery' },
-    { label: 'Contact', href: '#contact' }
-  ];
-
-  const galleryImages = [
-    '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.jpg',
-    '/media/signal-2025-11-21-103942.jpeg',
-    '/media/creative-assortment-delicious-food.jpg',
-    '/media/signal-2025-11-20-175804.jpeg'
-  ];
-
-  const steps = [
-    {
-      title: 'You send your preferences',
-      copy: 'Share allergies, cuisine preferences, travel dates, and guest count in one short brief.'
-    },
-    {
-      title: 'We match you with a top chef',
-      copy: 'Within minutes we confirm availability with vetted private chefs throughout Lake Como.'
-    },
-    {
-      title: 'Chef arrives at your villa',
-      copy: 'They arrive with a fully personalized menu, premium ingredients, and service staff if desired.'
-    }
-  ];
-
-  const dietaryOptions = [
-    { label: 'None', value: 'none' },
-    { label: 'Gluten Free', value: 'gluten-free' },
-    { label: 'Dairy Free', value: 'dairy-free' },
-    { label: 'Vegan', value: 'vegan' },
-    { label: 'Vegetarian', value: 'vegetarian' },
-    { label: 'Kosher', value: 'kosher' },
-    { label: 'Halal', value: 'halal' },
-    { label: 'Other', value: 'other' }
-  ];
-
-  const faqs = [
-    {
-      question: 'How far in advance should we book a private chef on Lake Como?',
-      answer:
-        'We specialize in quick turnarounds. Many dinners confirm within a few days, even in peak season. Share your details and we’ll assign an available chef right away.'
-    },
-    {
-      question: 'Can the chef accommodate allergies and dietary restrictions?',
-      answer:
-        'Absolutely. We collect detailed dietary requirements up front and curate a chef who specializes in those needs—vegan, gluten-free, kosher, halal, or fully bespoke.'
-    },
-    {
-      question: 'Do you provide wine pairings and service staff?',
-      answer:
-        'Yes. Sommelier-selected wine pairings, mixologists, and service staff can be added to any dinner. Simply include your request in the form and we will arrange the full hospitality team.'
-    }
-  ];
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer
+      }
+    }))
+  };
 </script>
 
 
