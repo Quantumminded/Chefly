@@ -16,7 +16,7 @@
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://cheflycomo.com/" />
-  <meta property="og:image" content="https://chefly10.vercel.app/media/hero-img.jpg" />
+  <meta property="og:image" content="https://chefly10.vercel.app/media/hero-img.webp" />
   <meta property="og:image:width" content="1920" />
   <meta property="og:image:height" content="1080" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -25,11 +25,9 @@
     name="twitter:description"
     content="Tailored private chef experiences for Lake Como villas. Seafood, vegan, classic Italian and more."
   />
-  <meta name="twitter:image" content="https://chefly10.vercel.app/media/hero-img.jpg" />
-  <!-- Preload modern image formats for LCP candidate (hero poster) -->
-  <link rel="preload" as="image" href="/media/hero-img.avif" type="image/avif" fetchpriority="high" />
+  <meta name="twitter:image" content="https://chefly10.vercel.app/media/hero-img.webp" />
+  <!-- Preload hero poster for LCP candidate (WebP: 74% smaller than JPG) -->
   <link rel="preload" as="image" href="/media/hero-img.webp" type="image/webp" fetchpriority="high" />
-  <link rel="preload" as="image" href="/media/hero-img.jpg" type="image/jpeg" fetchpriority="high" />
   <link
     rel="preconnect"
     href="https://fonts.googleapis.com"
@@ -64,7 +62,6 @@
       poster={heroPoster}
       width="1920"
       height="1080"
-      fetchpriority="high"
     >
       <source src={heroVideoSrc} type="video/mp4" />
     </video>

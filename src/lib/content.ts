@@ -1,6 +1,6 @@
 export const siteUrl = 'https://chefly10.vercel.app';
 
-export const heroPosterPath = '/media/hero-img.jpg';
+export const heroPosterPath = '/media/hero-img.webp';
 export const heroVideoSrc = '/media/hero-video2new.mp4';
 
 export const navLinks = [
