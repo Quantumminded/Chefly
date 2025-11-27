@@ -9,8 +9,7 @@ export const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Service', href: '#services' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Blog', href: '/blog' }
+  { label: 'Contact', href: '/contact' }
 ];
 
 export const navLinksSecondary = [
@@ -19,8 +18,7 @@ export const navLinksSecondary = [
   { label: 'About', href: '/about' },
   { label: 'Service', href: '/#services' },
   { label: 'Gallery', href: '/#gallery' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Blog', href: '/blog' }
+  { label: 'Contact', href: '/contact' }
 ];
 
 export const services = [
