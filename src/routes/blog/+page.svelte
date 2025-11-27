@@ -19,52 +19,21 @@
 </svelte:head>
 
 <main class="min-h-screen bg-[#050608] text-[#f7f1e3]">
-  <!-- Header/Navbar -->
-  <header class="border-b border-white/10 bg-black/80 backdrop-blur" aria-label="Site header">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-      <a href="/" class="font-serif text-xl tracking-wide hover:text-[#d4af37] transition">Chefly</a>
-      <nav class="hidden gap-8 text-sm uppercase tracking-[0.3em] lg:flex" aria-label="Primary navigation">
-        {#each navLinksSecondary as link}
-          <a class="text-[#f7f1e3]/80 transition hover:text-white" href={link.href}>{link.label}</a>
-        {/each}
-      </nav>
-      <button
-        class="hidden rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white transition hover:bg-white/20 lg:inline-flex"
-        type="button"
-        on:click={openForm}
-      >
-        Book
-      </button>
-      <button
-        class="lg:hidden ml-4 rounded-full border border-white/20 bg-white/10 p-2"
-        aria-label="Toggle navigation"
-        aria-expanded={navOpen}
-        on:click={() => (navOpen = !navOpen)}
-        type="button"
-      >
-        <svg class="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
-        </svg>
-      </button>
-    </div>
-    {#if navOpen}
-      <div class="border-t border-white/10 bg-black/80 px-6 py-4 lg:hidden">
-        <nav class="flex flex-col gap-4 text-sm uppercase tracking-[0.3em]" aria-label="Mobile navigation">
-          {#each navLinksSecondary as link}
-            <a class="text-[#f7f1e3] hover:text-white" href={link.href} on:click={() => (navOpen = false)}
-              >{link.label}</a
-            >
-          {/each}
-          <button
-            class="mt-2 rounded-full bg-[#b6893f] px-4 py-3 text-xs font-semibold tracking-wide text-black"
-            on:click={openForm}
-            type="button"
-          >
-            Request Your Chef
-          </button>
+  <!-- Header -->
+  <header class="border-b border-white/10 bg-black/80 backdrop-blur">
+    <div class="mx-auto max-w-6xl px-6 py-5">
+      <div class="flex items-center justify-between">
+        <a href="/" class="text-lg font-serif uppercase tracking-wider text-white hover:text-[#d4af37] transition">
+          Chefly
+        </a>
+        <nav class="hidden gap-8 text-sm uppercase tracking-[0.3em] lg:flex">
+          <a href="/" class="text-[#f7f1e3]/80 hover:text-white transition">Home</a>
+          <a href="/about" class="text-[#f7f1e3]/80 hover:text-white transition">About</a>
+          <a href="/blog" class="text-white">Blog</a>
+          <a href="/contact" class="text-[#f7f1e3]/80 hover:text-white transition">Contact</a>
         </nav>
       </div>
-    {/if}
+    </div>
   </header>
 
   <!-- Hero Section -->
@@ -148,19 +117,6 @@
 </main>
 
 <script lang="ts">
-  import { navLinksSecondary } from '../../lib/content';
-
-  let navOpen = false;
-  let formOpen = false;
-
-  function openForm() {
-    formOpen = true;
-  }
-
-  function closeForm() {
-    formOpen = false;
-  }
-
   const articles = [
     {
       slug: 'how-to-plan-the-perfect-private-dinner',
