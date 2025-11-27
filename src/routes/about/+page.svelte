@@ -28,7 +28,7 @@
 </svelte:head>
 
 <main class="min-h-screen bg-[#050608] text-[#f7f1e3]">
-    <section class="relative min-h-screen w-full overflow-hidden bg-black">
+  <section class="relative min-h-screen w-full overflow-hidden bg-black">
     <video
       class="absolute inset-0 h-full w-full object-cover"
       autoplay
@@ -92,10 +92,10 @@
     </header>
     <div class="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-24">
       <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Our Culinary Team</p>
-      <h1 id="chef-heading" class="mt-4 font-serif text-5xl md:text-6xl text-white">
+      <h1 id="chef-heading" class="mt-6 max-w-3xl font-serif text-4xl leading-snug text-white drop-shadow md:text-6xl">
         Hand-Selected Master Chefs
       </h1>
-      <p class="mt-6 text-lg text-[#d9d2c6]/90">
+      <p class="mt-6 max-w-xl text-lg text-[#f7f1e3]/90">
         A carefully curated network of Michelin-trained culinary artists, each bringing unique expertise, creativity, and dedication to transforming your private dining experience.
       </p>
     </div>
@@ -271,7 +271,7 @@
 </main>
 
 <script lang="ts">
-  import { heroVideoSrc, siteUrl, navLinksSecondary, navLinks, heroPosterPath } from '../../lib/content';
+  import { heroVideoSrc, siteUrl, navLinksSecondary, heroPosterPath } from '../../lib/content';
 
   let navOpen = false;
   let formOpen = false;

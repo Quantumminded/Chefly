@@ -28,77 +28,91 @@
 </svelte:head>
 
 <main class="min-h-screen bg-[#050608] text-[#f7f1e3]">
-  <!-- Header/Navbar -->
-  <header class="border-b border-white/10 bg-black/80 backdrop-blur" aria-label="Site header">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-      <a href="/" class="font-serif text-xl tracking-wide hover:text-[#d4af37] transition">Chefly Como</a>
-      <nav class="hidden gap-8 text-sm uppercase tracking-[0.3em] lg:flex" aria-label="Primary navigation">
-        {#each navLinksSecondary as link}
-          <a class="text-[#f7f1e3]/80 transition hover:text-white" href={link.href}>{link.label}</a>
-        {/each}
-      </nav>
-      <button
-        class="hidden rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white transition hover:bg-white/20 lg:inline-flex"
-        type="button"
-        on:click={openForm}
-      >
-        Book
-      </button>
-      <button
-        class="lg:hidden ml-4 rounded-full border border-white/20 bg-white/10 p-2"
-        aria-label="Toggle navigation"
-        aria-expanded={navOpen}
-        on:click={() => (navOpen = !navOpen)}
-        type="button"
-      >
-        <svg class="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
-        </svg>
-      </button>
-    </div>
-    {#if navOpen}
-      <div class="border-t border-white/10 bg-black/80 px-6 py-4 lg:hidden">
-        <nav class="flex flex-col gap-4 text-sm uppercase tracking-[0.3em]" aria-label="Mobile navigation">
+  <section class="relative min-h-screen w-full overflow-hidden bg-black">
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-label="Cinematic view of a private chef preparing dishes"
+      poster={heroPoster}
+      width="1920"
+      height="1080"
+    >
+      <source src={heroVideoSrc} type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/65 to-black/20"></div>
+    <header class="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur" aria-label="Site header">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+        <div class="font-serif text-xl tracking-wide">Chefly Como</div>
+        <nav class="hidden gap-8 text-sm uppercase tracking-[0.3em] lg:flex" aria-label="Primary navigation">
           {#each navLinksSecondary as link}
-            <a class="text-[#f7f1e3] hover:text-white" href={link.href} on:click={() => (navOpen = false)}
-              >{link.label}</a
-            >
+            <a class="text-[#f7f1e3]/80 transition hover:text-white" href={link.href}>{link.label}</a>
           {/each}
-          <button
-            class="mt-2 rounded-full bg-[#b6893f] px-4 py-3 text-xs font-semibold tracking-wide text-black"
-            on:click={openForm}
-            type="button"
-          >
-            Request Your Chef
-          </button>
         </nav>
+        <button
+          class="hidden rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white transition hover:bg-white/20 lg:inline-flex"
+          type="button"
+          on:click={openForm}
+        >
+          Book
+        </button>
+        <button
+          class="lg:hidden ml-4 rounded-full border border-white/20 bg-white/10 p-2"
+          aria-label="Toggle navigation"
+          aria-expanded={navOpen}
+          on:click={() => (navOpen = !navOpen)}
+          type="button"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+          </svg>
+        </button>
       </div>
-    {/if}
-  </header>
-
-  <!-- Hero Section -->
-  <section class="relative min-h-[60vh] w-full overflow-hidden bg-gradient-to-b from-black to-[#06080d] px-6 py-20">
-    <div class="relative z-10 mx-auto max-w-4xl">
-      <p class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Lake Como Private Dining</p>
-      <h1 class="mt-6 font-serif text-5xl leading-tight text-white md:text-6xl">
-        Private Chef in Como
-      </h1>
-      <p class="mt-6 max-w-2xl text-lg text-[#f7f1e3]/90">
-        Michelin-trained chefs, bespoke menus, and flawless service at your Lake Como villa. No planning. Pure luxury.
-      </p>
-      <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-        <a
-          href="/#contact"
-          class="rounded-full bg-[#d4af37] px-8 py-4 text-center text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#e5c158]"
-        >
-          Book Your Private Chef
-        </a>
-        <a
-          href="/#contact"
-          class="rounded-full border border-[#d4af37] px-8 py-4 text-center text-sm font-semibold uppercase tracking-wide text-[#d4af37] transition hover:bg-[#d4af37]/10"
-        >
-          Request a Custom Menu
-        </a>
+      {#if navOpen}
+        <div class="border-t border-white/10 bg-black/80 px-6 py-4 lg:hidden">
+          <nav class="flex flex-col gap-4 text-sm uppercase tracking-[0.3em]" aria-label="Mobile navigation">
+            {#each navLinksSecondary as link}
+              <a class="text-[#f7f1e3] hover:text-white" href={link.href} on:click={() => (navOpen = false)}
+                >{link.label}</a
+              >
+            {/each}
+            <button
+              class="mt-2 rounded-full bg-[#b6893f] px-4 py-3 text-xs font-semibold tracking-wide text-black"
+              on:click={openForm}
+              type="button"
+            >
+              Request Your Chef
+            </button>
+          </nav>
+        </div>
+      {/if}
+    </header>
+    <div class="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-24">
+      <div>
+        <p class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Lake Como Private Dining</p>
+        <h1 class="mt-6 max-w-3xl font-serif text-4xl leading-snug text-white drop-shadow md:text-6xl">
+          Private Chef in Como
+        </h1>
+        <p class="mt-6 max-w-xl text-lg text-[#f7f1e3]/90">
+          Michelin-trained chefs, bespoke menus, and flawless service at your Lake Como villa. No planning. Pure luxury.
+        </p>
+        <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+          <a
+            href="/#contact"
+            class="rounded-full bg-[#d4af37] px-8 py-4 text-center text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#e5c158]"
+          >
+            Book Your Private Chef
+          </a>
+          <a
+            href="/#contact"
+            class="rounded-full border border-[#d4af37] px-8 py-4 text-center text-sm font-semibold uppercase tracking-wide text-[#d4af37] transition hover:bg-[#d4af37]/10"
+          >
+            Request a Custom Menu
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -335,18 +349,25 @@
 </main>
 
 <script lang="ts">
-  import { navLinksSecondary } from '../../lib/content';
+  import {  heroVideoSrc, siteUrl, navLinksSecondary, heroPosterPath } from '../../lib/content';
 
   let navOpen = false;
   let formOpen = false;
+  let submitMessage = '';
 
-  function openForm() {
+  const heroPoster = heroPosterPath;
+  const heroPosterAbsolute = `${siteUrl}${heroPosterPath}`;
+  const heroVideoAbsolute = `${siteUrl}${heroVideoSrc}`;
+
+  const openForm = () => {
     formOpen = true;
-  }
+    navOpen = false;
+  };
 
-  function closeForm() {
+  const closeForm = () => {
     formOpen = false;
-  }
+    submitMessage = '';
+  };
 
   let jsonLd = {
     '@context': 'https://schema.org',

@@ -113,7 +113,7 @@
       {/if}
     </header>
     <div class="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-24">
-      <p class="text-sm uppercase tracking-[0.3em] text-[#d7c39f]/80">Lake Como • Private Dining</p>
+      <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Lake Como • Private Dining</p>
       <h1 class="mt-6 max-w-3xl font-serif text-4xl leading-snug text-white drop-shadow md:text-6xl">
         Your Private Chef on Lake Como — Tailored Menus, Effortless Experience
       </h1>
