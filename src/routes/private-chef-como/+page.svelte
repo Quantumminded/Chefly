@@ -46,7 +46,7 @@
     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/65 to-black/20"></div>
     <header class="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur" aria-label="Site header">
       <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <div class="font-serif text-xl tracking-wide">Chefly Como</div>
+        <div class="font-serif text-xl tracking-wide">Chefly</div>
         <nav class="hidden gap-8 text-sm uppercase tracking-[0.3em] lg:flex" aria-label="Primary navigation">
           {#each navLinksSecondary as link}
             <a class="text-[#f7f1e3]/80 transition hover:text-white" href={link.href}>{link.label}</a>
