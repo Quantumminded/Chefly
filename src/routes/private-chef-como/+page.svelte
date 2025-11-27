@@ -41,7 +41,7 @@
       width="1920"
       height="1080"
     >
-      <source src="/media/hero-video2new.mp4" type="video/mp4" />
+      <source src={heroVideo} type="video/mp4" />
     </video>
     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/65 to-black/20"></div>
     <header class="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur" aria-label="Site header">
@@ -354,11 +354,11 @@
   let navOpen = false;
   let formOpen = false;
   let submitMessage = '';
-  
+
+  const heroVideo = heroVideoSrc;
 
   const heroPoster = heroPosterPath;
-  const heroPosterAbsolute = `${siteUrl}${heroPosterPath}`;
-  const heroVideoAbsolute = `${siteUrl}${heroVideoSrc}`;
+
 
   const openForm = () => {
     formOpen = true;
