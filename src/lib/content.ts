@@ -7,7 +7,7 @@ export const navLinks = [
   { label: 'Como', href: '/private-chef-como' },
   { label: 'Events', href: '/events' },
   { label: 'About', href: '/about' },
-  { label: 'Service', href: '#services' },
+  // { label: 'Service', href: '#services' },
   // { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '/contact' },
   { label: 'Blog', href: '/blog' }
@@ -17,7 +17,7 @@ export const navLinksSecondary = [
   { label: 'Como', href: '/private-chef-como' },
   { label: 'Events', href: '/events' },
   { label: 'About', href: '/about' },
-  { label: 'Service', href: '/#services' },
+  // { label: 'Service', href: '/#services' },
   // { label: 'Gallery', href: '/#gallery' },
   { label: 'Contact', href: '/contact' },
   { label: 'Blog', href: '/blog' }
