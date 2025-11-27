@@ -4,21 +4,10 @@ export const heroPosterPath = '/media/hero-img.webp';
 export const heroVideoSrc = '/media/hero-video2new.mp4';
 
 export const navLinks = [
-  { label: 'Como', href: '/private-chef-como' },
-  { label: 'Events', href: '/events' },
-  { label: 'About', href: '/about' },
+  { label: 'About', href: '#about' },
   { label: 'Service', href: '#services' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '/contact' }
-];
-
-export const navLinksSecondary = [
-  { label: 'Como', href: '/private-chef-como' },
-  { label: 'Events', href: '/events' },
-  { label: 'About', href: '/about' },
-  { label: 'Service', href: '/#services' },
-  { label: 'Gallery', href: '/#gallery' },
-  { label: 'Contact', href: '/contact' }
+  { label: 'Contact', href: '#contact' }
 ];
 
 export const services = [

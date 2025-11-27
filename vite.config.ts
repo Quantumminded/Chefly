@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite';
-import { sveltekit } from '@sveltejs/kit/vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 // Export an async config so we can dynamically import optional plugins.
 // This avoids build/dev failures if the optional devDependencies are not installed.
 export default defineConfig(async () => {
-  const plugins: any[] = [sveltekit()];
+  const plugins: any[] = [svelte()];
 
   // Try to load image optimization plugin if present
   try {

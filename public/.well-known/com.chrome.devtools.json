@@ -1,8 +1,0 @@
-{
-  "hosting": [
-    {
-      "site": "chefly10.vercel.app",
-      "browser-url": "http://localhost:5173"
-    }
-  ]
-}
