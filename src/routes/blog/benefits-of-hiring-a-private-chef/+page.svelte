@@ -57,11 +57,15 @@
 
     <!-- Featured Image -->
     <div class="mb-12 aspect-video rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 overflow-hidden flex items-center justify-center">
-      <svg class="h-20 w-20 text-[#d4af37]/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-        <rect x="3" y="3" width="18" height="18" rx="2" />
-        <circle cx="8.5" cy="8.5" r="1.5" />
-        <path d="M21 15l-5-5L5 21" />
-      </svg>
+      <ResponsiveImage 
+      src={articlesimg[0].img.src} 
+      alt={articlesimg[0].img.alt} 
+      srcset={articlesimg[0].img.srcset}
+      loading="lazy"
+      decoding="async"
+      
+      class="h-full w-full object-cover" 
+      />
     </div>
 
     <!-- Content -->
@@ -170,6 +174,23 @@
 </main>
 
 <script lang="ts">
+
+import ResponsiveImage from '../../../components/ResponsiveImage.svelte';
+  
+  const articlesimg = [
+      {
+        img: {      
+        src: '/media/img03.jpg',
+        alt: 'Salmon steak with vegetables and sauce',
+        caption: 'Salmon steak with vegetables and sauce',
+        srcset: {
+          avif: '/media/img03.avif',
+          webp: '/media/img03.webp',
+          jpg: '/media/img03.jpg'
+        }
+      }
+      }
+    ];
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
