@@ -86,13 +86,17 @@
       <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
         {#each articles as article (article.slug)}
           <article class="group flex flex-col rounded-2xl border border-white/10 overflow-hidden bg-white/5 hover:bg-white/10 transition">
-            <div class="aspect-video bg-gradient-to-br from-white/10 to-white/5 overflow-hidden">
-              <div class="w-full h-full flex items-center justify-center">
-                <svg class="h-12 w-12 text-[#d4af37]/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <path d="M21 15l-5-5L5 21" />
-                </svg>
+            <div class="bg-gradient-to-br from-white/10 to-white/5 overflow-hidden">
+              <div class="w-full h-full">
+                <ResponsiveImage 
+                    src={article.img.src} 
+                    alt={article.img.alt} 
+                    srcset={article.img.srcset}
+                    loading="lazy"
+                    decoding="async"
+                    
+                    class="h-56 w-full object-cover" 
+                />
               </div>
             </div>
             <div class="flex-1 flex flex-col p-6">
@@ -149,6 +153,7 @@
 
 <script lang="ts">
   import { navLinksSecondary } from '../../lib/content';
+  import ResponsiveImage from '../../components/ResponsiveImage.svelte';
 
   let navOpen = false;
   let formOpen = false;
@@ -167,21 +172,51 @@
       title: 'How to Plan the Perfect Private Dinner',
       excerpt: 'Master the art of orchestrating an unforgettable private dining experience. From guest selection to menu curation, we guide you through every detail.',
       category: 'Planning',
-      readTime: 6
+      readTime: 6,
+      img: {      
+        src: '/media/img01.jpg',
+        alt: 'Seefood dish with brocoli and vegetables',
+        caption: 'Seefood tasting menu preparation',
+        srcset: {
+          avif: '/media/img01.avif',
+          webp: '/media/img01.webp',
+          jpg: '/media/img01.jpg'
+        }
+      }
     },
     {
       slug: 'private-chef-costs-in-2025',
       title: 'Private Chef Costs in 2025',
       excerpt: 'Understanding pricing for private chef services. Explore what influences costs and how to get maximum value for your investment.',
       category: 'Pricing',
-      readTime: 5
+      readTime: 5,
+      img: {      
+        src: '/media/img02.jpg',
+        alt: 'Two Oyster on a dish with vinagrette sauce ',
+        caption: 'Oyster and wine degustation',
+        srcset: {
+          avif: '/media/img02.avif',
+          webp: '/media/img02.webp',
+          jpg: '/media/img02.jpg'
+        }
+      }
     },
     {
       slug: 'benefits-of-hiring-a-private-chef',
       title: 'Benefits of Hiring a Private Chef',
       excerpt: 'Discover why luxury travelers and villa owners are choosing private chefs. From personalization to convenience, learn the advantages.',
       category: 'Insights',
-      readTime: 7
+      readTime: 7,
+      img: {      
+        src: '/media/img03.jpg',
+        alt: 'Salmon steak with vegetables and sauce',
+        caption: 'Salmon steak with vegetables and sauce',
+        srcset: {
+          avif: '/media/img03.avif',
+          webp: '/media/img03.webp',
+          jpg: '/media/img03.jpg'
+        }
+      }
     }
   ];
 
@@ -196,4 +231,17 @@
       name: 'Chefly'
     }
   };
+
+  const blogImages = [
+  {
+    src: '/media/img01.jpg',
+    alt: 'Seefood dish with brocoli and vegetables',
+    caption: 'Seefood tasting menu preparation',
+    srcset: {
+      avif: '/media/img01.avif',
+      webp: '/media/img01.webp',
+      jpg: '/media/img01.jpg'
+    }
+  }
+];
 </script>
