@@ -230,7 +230,17 @@
             </ul>
           </div>
           <div class="md:w-1/2">
-            <div class="aspect-square rounded-2xl border border-white/10 bg-white/5"></div>
+            <div class="aspect-square rounded-2xl border border-white/10 bg-white/5">
+              <ResponsiveImage 
+              src={privatchefImageSecond[0].src} 
+              alt={privatchefImageSecond[0].alt} 
+              srcset={privatchefImageSecond[0].srcset}
+              loading="lazy"
+              decoding="async"
+              
+              class="h-full w-full object-cover" 
+              />
+            </div>
           </div>
         </div>
 
@@ -248,7 +258,17 @@
             </ul>
           </div>
           <div class="md:w-1/2">
-            <div class="aspect-square rounded-2xl border border-white/10 bg-white/5"></div>
+            <div class="aspect-square rounded-2xl border border-white/10 bg-white/5">
+              <ResponsiveImage 
+              src={privatchefImageFirst[0].src} 
+              alt={privatchefImageFirst[0].alt} 
+              srcset={privatchefImageFirst[0].srcset}
+              loading="lazy"
+              decoding="async"
+              
+              class="h-full w-full object-cover" 
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -350,6 +370,7 @@
 
 <script lang="ts">
   import {  heroVideoSrc, siteUrl, navLinksSecondary, heroPosterPath } from '../../lib/content';
+  import ResponsiveImage from '../../components/ResponsiveImage.svelte';
 
   let navOpen = false;
   let formOpen = false;
@@ -369,6 +390,32 @@
     formOpen = false;
     submitMessage = '';
   };
+
+  const privatchefImageFirst= [
+    {  
+      src: '/media/img11.jpg',
+      alt: 'Chef pooring red sauce on a plate with vegetables and chees',
+      caption: 'Chef serving for a privat dinner in como villa',
+      srcset: {
+        avif: '/media/img11.avif',
+        webp: '/media/img11.webp',
+        jpg: '/media/img11.jpg' 
+      }     
+    }
+  ];
+
+  const privatchefImageSecond= [
+    {  
+      src: '/media/img12.jpg',
+      alt: 'Fine dinner with wine and scallops on a plate',
+      caption: 'Plate of scallops with wine and vegetables',
+      srcset: {
+        avif: '/media/img12.avif',
+        webp: '/media/img12.webp',
+        jpg: '/media/img12.jpg' 
+      }
+    }
+  ];
 
   let jsonLd = {
     '@context': 'https://schema.org',

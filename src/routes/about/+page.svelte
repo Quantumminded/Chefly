@@ -151,11 +151,16 @@
             <strong class="text-[#d4af37]">"Great cooking is storytelling,"</strong> our chefs believe. <strong class="text-[#d4af37]">"Every plate tells a story of place, season, and the people dining together."</strong>
           </p>
         </div>
-        <div class="aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 flex items-center justify-center">
-          <div class="text-center text-[#d9d2c6]/40">
-            <p class="text-sm">Our Chefs at Work</p>
-            <p class="text-xs mt-2">(WebP image)</p>
-          </div>
+        <div class=" rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 flex items-center justify-center">
+          <ResponsiveImage 
+          src={aboutImageFirst[0].src} 
+          alt={aboutImageFirst[0].alt} 
+          srcset={aboutImageFirst[0].srcset}
+          loading="lazy"
+          decoding="async"
+          
+          class="h-full w-full object-cover" 
+          />
         </div>
       </div>
     </div>
@@ -232,11 +237,16 @@
             </li>
           </ul>
         </div>
-        <div class="order-1 aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 flex items-center justify-center md:order-1">
-          <div class="text-center text-[#d9d2c6]/40">
-            <p class="text-sm">Culinary Experience</p>
-            <p class="text-xs mt-2">(WebP image)</p>
-          </div>
+        <div class="order-1 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 flex items-center justify-center md:order-1">
+          <ResponsiveImage 
+          src={aboutImageSecond[0].src} 
+          alt={aboutImageSecond[0].alt} 
+          srcset={aboutImageSecond[0].srcset}
+          loading="lazy"
+          decoding="async"
+          
+          class="h-full w-full object-cover" 
+          />
         </div>
       </div>
     </div>
@@ -272,6 +282,7 @@
 
 <script lang="ts">
   import { heroVideoSrc, siteUrl, navLinksSecondary, heroPosterPath } from '../../lib/content';
+  import ResponsiveImage from '../../components/ResponsiveImage.svelte';
 
   let navOpen = false;
   let formOpen = false;
@@ -290,6 +301,31 @@
     formOpen = false;
     submitMessage = '';
   };
+
+  const aboutImageFirst= [
+    {  
+      src: '/media/img09.jpg',
+      alt: 'Seefood spaghetti dish with salat and wine',
+      caption: 'Seefood spaghetti dish with salat and wine',
+      srcset: {
+        avif: '/media/img09.avif',
+        webp: '/media/img09.webp',
+        jpg: '/media/img09.jpg' 
+      }     
+    }
+  ];
+  const aboutImageSecond= [
+    {  
+      src: '/media/img10.jpg',
+      alt: 'Seefood spaghetti dish with salat and wine',
+      caption: 'Seefood spaghetti dish with salat and wine',
+      srcset: {
+        avif: '/media/img10.avif',
+        webp: '/media/img10.webp',
+        jpg: '/media/img10.jpg' 
+      }
+    }
+  ];
 
   let jsonLd = {
     '@context': 'https://schema.org',

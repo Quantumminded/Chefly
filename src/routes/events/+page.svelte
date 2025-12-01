@@ -128,7 +128,17 @@
             Inquire About Your Event
           </button>
         </div>
-        <div class="aspect-square rounded-2xl border border-white/10 bg-white/5"></div>
+        <div class="aspect-square rounded-2xl border border-white/10 bg-white/5">
+          <ResponsiveImage 
+          src={firstImage[0].src} 
+          alt={firstImage[0].alt} 
+          srcset={firstImage[0].srcset}
+          loading="lazy"
+          decoding="async"
+          
+          class="h-full w-full object-cover" 
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -153,7 +163,18 @@
             Plan Your Corporate Dinner
           </button>
         </div>
-        <div class="order-1 aspect-square rounded-2xl border border-white/10 bg-white/5 md:order-1"></div>
+        <div class="order-1 aspect-square rounded-2xl border border-white/10 bg-white/5 md:order-1">
+        
+        <ResponsiveImage 
+          src={secondImage[0].src} 
+          alt={secondImage[0].alt} 
+          srcset={secondImage[0].srcset}
+          loading="lazy"
+          decoding="async"
+          
+          class="h-full w-full object-cover" 
+        />
+        </div>
       </div>
     </div>
   </section>
@@ -178,7 +199,17 @@
             Reserve Your Romantic Dinner
           </button>
         </div>
-        <div class="aspect-square rounded-2xl border border-white/10 bg-white/5"></div>
+        <div class="aspect-square rounded-2xl border border-white/10 bg-white/5">
+        <ResponsiveImage 
+          src={thirdImage[0].src} 
+          alt={thirdImage[0].alt} 
+          srcset={thirdImage[0].srcset}
+          loading="lazy"
+          decoding="async"
+          
+          class="h-full w-full object-cover" 
+        />
+        </div>
       </div>
     </div>
   </section>
@@ -203,7 +234,17 @@
             Celebrate Your Milestone
           </button>
         </div>
-        <div class="order-1 aspect-square rounded-2xl border border-white/10 bg-white/5 md:order-1"></div>
+        <div class="order-1 aspect-square rounded-2xl border border-white/10 bg-white/5 md:order-1">
+        <ResponsiveImage 
+          src={fourthImage[0].src} 
+          alt={fourthImage[0].alt} 
+          srcset={fourthImage[0].srcset}
+          loading="lazy"
+          decoding="async"
+          
+          class="h-full w-full object-cover" 
+        />
+        </div>
       </div>
     </div>
   </section>
@@ -228,7 +269,17 @@
             Book Your Fine Dining Experience
           </button>
         </div>
-        <div class="aspect-square rounded-2xl border border-white/10 bg-white/5"></div>
+        <div class="aspect-square rounded-2xl border border-white/10 bg-white/5">
+        <ResponsiveImage 
+          src={fifthImage[0].src} 
+          alt={fifthImage[0].alt} 
+          srcset={fifthImage[0].srcset}
+          loading="lazy"
+          decoding="async"
+          
+          class="h-full w-full object-cover" 
+        />
+        </div>
       </div>
     </div>
   </section>
@@ -269,6 +320,7 @@
 
 <script lang="ts">
   import { heroVideoSrc, siteUrl, navLinksSecondary, heroPosterPath } from '../../lib/content';
+  import ResponsiveImage from '../../components/ResponsiveImage.svelte';
 
   let navOpen = false;
   let formOpen = false;
@@ -287,6 +339,69 @@
     formOpen = false;
     submitMessage = '';
   };
+
+  const firstImage = [
+    {  
+        src: '/media/img04.jpg',
+        alt: 'Chef serving a dish with fish and vegetables',
+        caption: 'Privat chef service for events',
+        srcset: {
+          avif: '/media/img04.avif',
+          webp: '/media/img04.webp',
+          jpg: '/media/img04.jpg'
+        }
+    }
+  ];
+
+  const secondImage = [
+    {  
+      src: '/media/img05.jpg',
+      alt: 'Chef serving bruschetta with meet and vegetables',
+      caption: 'Privat chef serving bruschetta',
+      srcset: {
+        avif: '/media/img05.avif',
+        webp: '/media/img05.webp',
+        jpg: '/media/img05.jpg'
+      }
+    }
+  ];
+  const thirdImage = [
+    {  
+      src: '/media/img06.jpg',
+      alt: 'Apetaizers with vegetables and cheese and flowers',
+      caption: 'apetizers with vegetables and cheese and flowers',
+      srcset: {
+        avif: '/media/img06.avif',
+        webp: '/media/img06.webp',
+        jpg: '/media/img06.jpg'
+      }
+    }
+  ];
+  const fourthImage = [
+    {  
+      src: '/media/img07.jpg',
+      alt: 'Chef serving a aubergine and tomatoes dish',
+      caption: 'Privat chef service a veggy dinner',
+      srcset: {
+        avif: '/media/img07.avif',
+        webp: '/media/img07.webp',
+        jpg: '/media/img07.jpg' 
+      }
+    }
+  ];
+
+  const fifthImage = [
+    {  
+      src: '/media/img08.jpg',
+      alt: 'Seefood spaghetti dish with salat and wine',
+      caption: 'Seefood spaghetti dish with salat and wine',
+      srcset: {
+        avif: '/media/img08.avif',
+        webp: '/media/img08.webp',
+        jpg: '/media/img08.jpg' 
+      }     
+    }
+  ];
 
   let jsonLd = {
     '@context': 'https://schema.org',
