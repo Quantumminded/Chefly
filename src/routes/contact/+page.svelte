@@ -1,53 +1,57 @@
 <script lang="ts">
   import { navLinksSecondary, dietaryOptions } from '$lib/content';
 
-  let submitMessage = '';
-  let isSubmitting = false;
-
   let navOpen = false;
   let formOpen = false;
+  let submitting = false;
+  let submitMessage = '';
 
-  function openForm() {
+  const openForm = () => {
     formOpen = true;
-  }
+    navOpen = false;      
+  };
 
-  function closeForm() {
+  const closeForm = () => {
     formOpen = false;
-  }
+    submitMessage = '';
+  };
+  
+  const handleSubmit = async (event: SubmitEvent) => {
+    event.preventDefault();
+    submitting = true;
+    submitMessage = '';
 
-  async function handleSubmit(e: SubmitEvent) {
-    e.preventDefault();
-    if (isSubmitting) return;
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
 
-    isSubmitting = true;
+    const payload: Record<string, FormDataEntryValue> = {};
+    for (const [key, value] of formData.entries()) {
+      payload[key] = value;
+    }
 
-    const form = e.target as HTMLFormElement;
-    const payload = new FormData(form);
-
-    const message = [
-      `Nome: ${payload.get('fullName') || '-'}`,
-      `Email: ${payload.get('email') || '-'}`,
-      `Data: ${payload.get('date') || '-'}`,
-      `Location: ${payload.get('location') || '-'}`,
-      `Ospiti: ${payload.get('guests') || '-'}`,
-      `Preferenze: ${payload.get('preference') || '-'}`,
-      `Esigenze Dietetiche: ${payload.get('requirements') || '-'}`,
-      `Note Speciali: ${payload.get('notes') || '-'}`,
-      `WhatsApp Cliente: ${payload.get('whatsapp') || '-'}`
-    ].join('%0A');
+    const lines = [
+      'Richiesta nuova cena 👨‍🍳',
+      `Nome: ${payload.fullName || '-'}`,
+      `Email: ${payload.email || '-'}`,
+      `Data: ${payload.date || '-'}`,
+      `Villa: ${payload.location || '-'}`,
+      `Ospiti: ${payload.guests || '-'}`,
+      `Preferenze: ${payload.preference || '-'}`,
+      `Requisiti: ${payload.requirements || '-'}`,
+      `WhatsApp Cliente: ${payload.whatsapp || '-'}`,
+      `Note: ${payload.notes || '-'}`,
+      `Form inviato alle ${new Date().toLocaleString()}`
+    ];
 
     const whatsappNumber = '4917621567199';
-
+    const message = encodeURIComponent(lines.join('\n'));
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
 
+    submitting = false;
     submitMessage = 'Grazie! Si apre WhatsApp per completare la richiesta.';
-
     form.reset();
-    setTimeout(() => {
-      submitMessage = '';
-      isSubmitting = false;
-    }, 3000);
-  }
+  };
+
 </script>
 
 <svelte:head>
@@ -284,10 +288,10 @@
         </div>
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={submitting}
           class="mt-4 w-full rounded-full bg-[#d4af37] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37]"
         >
-          {#if isSubmitting}
+          {#if submitting}
             Sending...
           {:else}
             Send via WhatsApp
@@ -311,4 +315,150 @@
       <a href="/terms" class="hover:text-white">Terms</a>
     </div>
   </footer>
+
+  {#if formOpen}
+  <div class="fixed inset-0 z-50 flex items-center justify-center px-4 py-10">
+    <button
+      type="button"
+      class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+      aria-label="Close form"
+      on:click={closeForm}
+    ></button>
+    <div
+      class="relative z-10 w-full max-w-2xl overflow-y-auto rounded-3xl border border-white/10 bg-[#0b0e13] p-8 shadow-2xl"
+      style="max-height: 90vh;"
+    >
+      <button
+        class="absolute right-4 top-4 rounded-full border border-white/20 bg-white/5 p-2 text-white hover:bg-white/10"
+        type="button"
+        aria-label="Close form"
+        on:click={closeForm}
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+          <path d="M6 6l12 12M18 6l-12 12" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <p class="text-xs uppercase tracking-[0.3em] text-[#d9d2c6]">Ultra-short form</p>
+      <h3 class="mt-3 font-serif text-3xl">Arranging your dinner takes a minute.</h3>
+      <form class="mt-8 space-y-5" on:submit={handleSubmit}>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div>
+            <label for="request-name" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Full Name</label>
+            <input
+              type="text"
+              id="request-name"
+              placeholder="Your name"
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              name="fullName"
+            />
+          </div>
+          <div>
+            <label for="request-email" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Email</label>
+            <input
+              type="email"
+              id="request-email"
+              placeholder="you@email.com"
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              name="email"
+            />
+          </div>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div>
+            <label for="request-date" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Date</label>
+            <input
+              type="date"
+              id="request-date"
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+              name="date"
+            />
+          </div>
+          <div>
+            <label for="request-location" class="text-sm uppercase tracking-wide text-[#bcb3a2]"
+              >Location / Villa Name</label
+            >
+            <input
+              type="text"
+              placeholder="Villa del Lago"
+              id="request-location"
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              name="location"
+            />
+          </div>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div>
+            <label for="request-guests" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Number of Guests</label>
+            <input
+              type="number"
+              min="2"
+              placeholder="8"
+              id="request-guests"
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              name="guests"
+            />
+          </div>
+          <div>
+            <label for="request-diet" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Dietary Preferences</label>
+            <select
+              id="request-diet"
+              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+              name="preference"
+            >
+              <option>Italian Classic</option>
+              <option>Seafood</option>
+              <option>Vegan</option>
+              <option>Vegetarian</option>
+              <option>Chef Choice</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="request-requirements" class="text-sm uppercase tracking-wide text-[#bcb3a2]"
+            >Dietary Requirements</label
+          >
+          <select
+            id="request-requirements"
+            class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+            name="requirements"
+          >
+            <option value="">Select requirement</option>
+            {#each dietaryOptions as option}
+              <option value={option.value}>{option.label}</option>
+            {/each}
+          </select>
+        </div>
+        <div>
+          <label for="request-notes" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Special Requests</label>
+          <textarea
+            id="request-notes"
+            rows="3"
+            placeholder="Allergies, wine pairing preferences, service style..."
+            class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+            name="notes"
+          ></textarea>
+        </div>
+        <div>
+          <label for="request-whatsapp" class="text-sm uppercase tracking-wide text-[#bcb3a2]">WhatsApp Number</label>
+          <input
+            type="tel"
+            placeholder="+1 415 555 2211"
+            id="request-whatsapp"
+            class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+            name="whatsapp"
+          />
+        </div>
+        <button
+          class="mt-4 w-full rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+          disabled={submitting}
+        >
+          {submitting ? 'Sending...' : 'Confirm Request'}
+        </button>
+        {#if submitMessage}
+          <p class="text-center text-sm text-[#69dba1]" aria-live="polite">{submitMessage}</p>
+        {/if}
+      </form>
+    </div>
+  </div>
+{/if}
 </main>
