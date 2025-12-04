@@ -3,101 +3,70 @@ export const siteUrl = 'https://chefly10.vercel.app';
 export const heroPosterPath = '/media/hero-img.webp';
 export const heroVideoSrc = '/media/hero-video2new.mp4';
 
-export const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Service', href: '#services' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#contact' }
-];
+export const navLinks: { label: string; href: string }[] = [];
 
 export const services = [
   {
-    title: 'Zero Planning',
-    copy: 'You’re on vacation. We handle menu design, sourcing, staffing, equipment, and timing.',
+    title: 'Effortless Planning',
+    copy: 'We coordinate everything quietly with your villa staff before you arrive.',
     icon: 'clock',
     details: [
-      'Menu design aligned with allergies, wine cellar, and villa layout',
-      'Sommelier pairing or curated beverage program',
-      'Full mise en place, rentals, and on-site cleanup'
+      'No decisions needed — menus, pairing, staff and equipment handled entirely.'
     ]
   },
   {
-    title: 'Hand-Selected Chefs',
-    copy: 'Vetted chefs from Michelin-starred brigades who specialize in villa service and multicultural menus.',
+    title: 'Closed Network of Chefs',
+    copy: 'Chefs from Michelin brigades available only to our restricted villa circle.',
     icon: 'star',
     details: [
-      'Chefs sourced from Michelin-starred restaurants in Milan and Como',
-      'Trilingual service staff comfortable with UHNW guests',
-      'Background checks, NDA-friendly, experienced in multi-day villa stays'
+      'All vetted for UHNW etiquette, discretion, NDAs, and multi-day residencies.'
     ]
   },
   {
-    title: 'Tailored Experience',
-    copy: 'From extended tasting menus to brunch service and kids’ menus, every detail reflects your guest list.',
+    title: 'Ultra-Tailored Experience',
+    copy: 'Menus written around your guests — not templates.',
     icon: 'wine',
     details: [
-      'Lake fish degustation, vegan fine dining, or regional comfort classics',
-      'Flexible service formats: aperitivo cruise, brunch, tasting dinner',
-      'Coordination with villa concierge, florists, musicians, or boats'
+      'Only two experiences accepted per evening to preserve quality.'
     ]
   }
 ];
 
 export const galleryImages = [
   {
-    src: '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.jpg',
-    alt: 'Private chef searing fresh fish in a Lake Como villa kitchen',
-    caption: 'Seasonal tasting menu preparation',
-    srcset: {
-      avif: '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.avif',
-      webp: '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.webp',
-      jpg: '/media/ben-koorengevel-Vd0_Htlb-Kk-unsplash.jpg'
-    }
+    src: '/media/truffle.png',
+    alt: 'Elegant. Authentic. Unforgettable.',
+    caption: 'Elegant. Authentic. Unforgettable.'
   },
   {
-    src: '/media/signal-2025-11-21-103942.webp',
-    alt: 'Elegant table set on a terrace overlooking Lake Como',
-    caption: 'Lakeside table styling',
-    srcset: {
-      avif: '/media/signal-2025-11-21-103942.avif',
-      webp: '/media/signal-2025-11-21-103942.webp',
-      jpg: '/media/signal-2025-11-21-103942.jpeg'
-    }
+    src: '/media/chef.webp',
+    alt: 'Service. Celebration. Serenity.',
+    caption: 'Service. Celebration. Serenity'
   },
   {
-    src: '/media/creative-assortment-delicious-food.jpg',
-    alt: 'Handmade pasta with micro herbs on a black stone plate',
-    caption: 'Handmade pasta course',
-    srcset: {
-      avif: '/media/creative-assortment-delicious-food.avif',
-      webp: '/media/creative-assortment-delicious-food.webp',
-      jpg: '/media/creative-assortment-delicious-food.jpg'
-    }
+    src: '/media/woman.jpeg',
+    alt: 'Quiet. Effortless. Exclusive.',
+    caption: 'Quiet. Effortless. Exclusive'
   },
   {
-    src: '/media/signal-2025-11-20-175804.webp',
-    alt: 'Chef pouring sauce over a plated dish',
-    caption: 'Live plating at your villa',
-    srcset: {
-      avif: '/media/signal-2025-11-20-175804.avif',
-      webp: '/media/signal-2025-11-20-175804.webp',
-      jpg: '/media/signal-2025-11-20-175804.jpeg'
-    }
+    src: '/media/together.jpeg',
+    alt: 'Elegance. Pleasure. Connection.',
+    caption: 'Elegance. Pleasure. Connection.'
   }
 ];
 
 export const steps = [
   {
-    title: 'You send your preferences',
-    copy: 'Share allergies, cuisine preferences, travel dates, and guest count in one short brief.'
+    title: '01 — You send a brief',
+    copy: 'Preferences, allergies, dates, guest list. One message.'
   },
   {
-    title: 'We match you with a top chef',
-    copy: 'Within minutes we confirm availability with vetted private chefs throughout Lake Como.'
+    title: '02 — We assign your chef',
+    copy: 'From our closed network, usually within minutes.'
   },
   {
-    title: 'Chef arrives at your villa',
-    copy: 'They arrive with a fully personalized menu, premium ingredients, and service staff if desired.'
+    title: '03 — Your dinner appears',
+    copy: 'The chef arrives fully prepared with staff, ingredients, and silent-service standards.'
   }
 ];
 
@@ -116,7 +85,7 @@ export const faqs = [
   {
     question: 'How far in advance should we book a private chef on Lake Como?',
     answer:
-      'We specialize in quick turnarounds. Many dinners confirm within a few days, even in peak season. Share your details and we’ll assign an available chef right away.'
+      'We specialize in quick turnarounds. Many dinners confirm within a few days, even in peak season. Share your details and we will assign an available chef right away.'
   },
   {
     question: 'Can the chef accommodate allergies and dietary restrictions?',
@@ -127,6 +96,11 @@ export const faqs = [
     question: 'Do you provide wine pairings and service staff?',
     answer:
       'Yes. Sommelier-selected wine pairings, mixologists, and service staff can be added to any dinner. Simply include your request in the form and we will arrange the full hospitality team.'
+  },
+  {
+    question: 'Do you accept all requests?',
+    answer:
+      'No. We accept a limited number per week based on chef availability and service standards.'
   }
 ];
 
