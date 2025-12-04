@@ -5,22 +5,84 @@
 :root {
   font-family: 'Source Sans 3', system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', sans-serif;
-  color: #f7f1e3;
-  background-color: #050608;
+  color: #F5F4EF;
+  background-color: #0B0B0C;
+  line-height: 1.7;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #050608;
+  background-color: #0B0B0C;
 }
 
 .font-serif {
   font-family: 'Playfair Display', 'Times New Roman', serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 button {
   cursor: pointer;
+}
+
+/* Smooth fade-in animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 300ms ease-out forwards;
+}
+
+/* Luxury CTA styling */
+.luxury-cta {
+  background: #0A0A0A;
+  color: #C8B47A;
+  border: 1.5px solid #C8B47A;
+  border-radius: 100px;
+  height: 56px;
+  padding: 0 32px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: opacity 200ms ease;
+}
+
+.luxury-cta:hover {
+  opacity: 0.85;
+}
+
+/* Gold accents */
+.gold-dot::before {
+  content: '•';
+  color: #C9B67A;
+  margin-right: 0.75rem;
+  font-size: 1.2em;
+}
+
+/* Luxury card styling */
+.luxury-card {
+  background: rgba(26, 26, 28, 0.4);
+  border: 1px solid #222;
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Section separators */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9B67A 50%, transparent);
+  opacity: 0.3;
 }
 
 

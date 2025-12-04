@@ -1,29 +1,29 @@
 <svelte:head>
-  <title>Private Chef on Lake Como | Luxury Villa Dining</title>
+  <title>Maravellion | Private Dining for Luxury Villas on Lake Como</title>
   <meta
     name="description"
-    content="Book a hand-selected private chef on Lake Como. Bespoke menus, villa dining, and zero planning for ultra-luxury vacations."
+    content="Discreet, uncompromising private dining experiences for luxury villas on Lake Como. Closed network of elite chefs available year-round."
   />
   <meta
     name="keywords"
-    content="Lake Como private chef, villa dining experience, luxury catering Italy, chef at home Lake Como, bespoke tasting menu"
+    content="Lake Como private chef, luxury villa dining, UHNW private dining, exclusive chef service Lake Como, private villa experiences"
   />
-  <link rel="canonical" href="https://cheflycomo.com/" />
-  <meta property="og:title" content="Private Chef on Lake Como — Chefly Como" />
+  <link rel="canonical" href="https://maravellion.com/" />
+  <meta property="og:title" content="Maravellion — Private Dining for Luxury Villas" />
   <meta
     property="og:description"
-    content="No menus, no planning. Share your preferences and we deliver an unforgettable villa dinner with a Lake Como private chef."
+    content="Tell us your desires. Our private network handles the rest. Limited availability year-round."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://cheflycomo.com/" />
+  <meta property="og:url" content="https://maravellion.com/" />
   <meta property="og:image" content="https://chefly10.vercel.app/media/hero-img.webp" />
   <meta property="og:image:width" content="1920" />
   <meta property="og:image:height" content="1080" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chefly Como | Private Chef on Lake Como" />
+  <meta name="twitter:title" content="Maravellion | Private Dining for Luxury Villas" />
   <meta
     name="twitter:description"
-    content="Tailored private chef experiences for Lake Como villas. Seafood, vegan, classic Italian and more."
+    content="Discreet, uncompromising private dining experiences for luxury villas on Lake Como."
   />
   <meta name="twitter:image" content="https://chefly10.vercel.app/media/hero-img.webp" />
   <!-- Preload hero poster for LCP candidate (WebP: 74% smaller than JPG) -->
@@ -49,10 +49,11 @@
   </script>
 </svelte:head>
 
-<main class="min-h-screen bg-[#050608] text-[#f7f1e3]">
+<main class="min-h-screen bg-luxury-bg text-luxury-text">
   <section class="relative min-h-screen w-full overflow-hidden bg-black">
     <video
       class="absolute inset-0 h-full w-full object-cover"
+      style="filter: blur(0.5px);"
       autoplay
       muted
       loop
@@ -65,88 +66,68 @@
     >
       <source src={heroVideoSrc} type="video/mp4" />
     </video>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/65 to-black/20"></div>
-    <header class="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur" aria-label="Site header">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <div class="font-serif text-xl tracking-wide">Chefly Como</div>
-        <nav class="hidden gap-8 text-sm uppercase tracking-[0.3em] lg:flex" aria-label="Primary navigation">
-          {#each navLinks as link}
-            <a class="text-[#f7f1e3]/80 transition hover:text-white" href={link.href}>{link.label}</a>
-          {/each}
-        </nav>
+    <div class="absolute inset-0 bg-black/35"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+    <div class="absolute inset-0" style="box-shadow: inset 0 0 200px rgba(0,0,0,0.15);"></div>
+    
+    <header class="relative z-10 border-b border-luxury-divider/50 bg-black/10 backdrop-blur-sm" aria-label="Site header">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:py-6">
+        <div class="flex items-center gap-2.5 lg:gap-3">
+          <img src="/Logo_Maravellion.png" alt="Maravellion" class="h-7 w-auto lg:h-9" />
+          <div class="font-serif text-base lg:text-xl tracking-[0.06em] text-luxury-gold" style="font-weight: 400; letter-spacing: 0.06em;">Maravellion</div>
+        </div>
+        
+        <!-- Badge: centered, hidden on mobile -->
+        <div class="hidden lg:block absolute left-1/2 -translate-x-1/2">
+          <p class="font-serif text-[11px] uppercase tracking-[0.2em] text-luxury-gold-muted/70 whitespace-nowrap">
+            Trusted by villa guests from US • UK • CH • UAE
+          </p>
+        </div>
+        
         <button
-          class="hidden rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white transition hover:bg-white/20 lg:inline-flex"
+          class="luxury-cta inline-flex items-center justify-center"
           type="button"
           on:click={openForm}
         >
           Book
         </button>
-        <button
-          class="lg:hidden ml-4 rounded-full border border-white/20 bg-white/10 p-2"
-          aria-label="Toggle navigation"
-          aria-expanded={navOpen}
-          on:click={() => (navOpen = !navOpen)}
-          type="button"
-        >
-          <svg class="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
-            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
-          </svg>
-        </button>
       </div>
-      {#if navOpen}
-        <div class="border-t border-white/10 bg-black/80 px-6 py-4 lg:hidden">
-          <nav class="flex flex-col gap-4 text-sm uppercase tracking-[0.3em]" aria-label="Mobile navigation">
-            {#each navLinks as link}
-              <a class="text-[#f7f1e3] hover:text-white" href={link.href} on:click={() => (navOpen = false)}
-                >{link.label}</a
-              >
-            {/each}
-            <button
-              class="mt-2 rounded-full bg-[#b6893f] px-4 py-3 text-xs font-semibold tracking-wide text-black"
-              on:click={openForm}
-              type="button"
-            >
-              Request Your Chef
-            </button>
-          </nav>
-        </div>
-      {/if}
     </header>
-    <div class="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-24">
-      <p class="text-sm uppercase tracking-[0.3em] text-[#d7c39f]/80">Lake Como • Private Dining</p>
-      <h1 class="mt-6 max-w-3xl font-serif text-4xl leading-snug text-white drop-shadow md:text-6xl">
-        Your Private Chef on Lake Como — Tailored Menus, Effortless Experience
+    <div class="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-32">
+      <p class="text-sm uppercase tracking-[0.35em] text-luxury-gold-muted/70">Lake Como • Private Dining</p>
+      <h1 class="mt-8 max-w-3xl font-serif text-5xl leading-tight text-white md:text-[56px] md:leading-[1.1]" style="letter-spacing: -0.01em; font-weight: 500;">
+        Private Dining for Luxury Villas — Discreet, Uncompromising, Designed Around You.
       </h1>
-      <p class="mt-6 max-w-xl text-lg text-[#f7f1e3]/90">
-        Tell us your preferences. We handle the rest.
+      <p class="mt-8 max-w-xl text-lg leading-luxury text-luxury-text-muted">
+        Tell us your desires. Our private network handles the rest.
       </p>
       <button
-        class="mt-10 w-fit rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+        class="mt-12 w-fit luxury-cta"
         type="button"
         on:click={openForm}
       >
-        Request Your Chef — 60 Seconds
+        Request Access — 60 Seconds
       </button>
+      <p class="mt-5 text-sm leading-relaxed text-luxury-text-muted/70">
+        Limited availability year-round — priority access for villa guests.
+      </p>
     </div>
-    <p class="absolute bottom-6 right-8 text-xs uppercase tracking-[0.3em] text-[#f7f1e3]/70">
-      Trusted by villa guests from US • UK • DE • CH
-    </p>
   </section>
 
   {#if formOpen}
     <div class="fixed inset-0 z-50 flex items-center justify-center px-4 py-10">
       <button
         type="button"
-        class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        class="absolute inset-0 bg-black/90 backdrop-blur-md"
         aria-label="Close form"
         on:click={closeForm}
       ></button>
       <div
-        class="relative z-10 w-full max-w-2xl overflow-y-auto rounded-3xl border border-white/10 bg-[#0b0e13] p-8 shadow-2xl"
-        style="max-height: 90vh;"
+        class="relative z-10 w-full max-w-2xl overflow-y-auto luxury-card p-10"
+        style="max-height: 90vh; border-radius: 20px;"
       >
         <button
-          class="absolute right-4 top-4 rounded-full border border-white/20 bg-white/5 p-2 text-white hover:bg-white/10"
+          class="absolute right-6 top-6 rounded-full border border-luxury-divider bg-luxury-dark/50 p-2 text-luxury-text-muted hover:bg-luxury-dark transition-colors"
           type="button"
           aria-label="Close form"
           on:click={closeForm}
@@ -155,71 +136,71 @@
             <path d="M6 6l12 12M18 6l-12 12" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </button>
-        <p class="text-xs uppercase tracking-[0.3em] text-[#d9d2c6]">Ultra-short form</p>
-        <h3 class="mt-3 font-serif text-3xl">Arranging your dinner takes a minute.</h3>
-        <form class="mt-8 space-y-5" on:submit={handleSubmit}>
-          <div class="grid gap-5 md:grid-cols-2">
+        <p class="text-xs uppercase tracking-[0.35em] text-luxury-gold">Ultra-short form</p>
+        <h3 class="mt-4 font-serif text-3xl text-luxury-text" style="letter-spacing: -0.005em; font-weight: 500;">Arranging your dinner takes a minute.</h3>
+        <form class="mt-10 space-y-6" on:submit={handleSubmit}>
+          <div class="grid gap-6 md:grid-cols-2">
             <div>
-              <label for="request-name" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Full Name</label>
+              <label for="request-name" class="text-sm uppercase tracking-wide text-luxury-text-muted">Full Name</label>
               <input
                 type="text"
                 id="request-name"
                 placeholder="Your name"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+                class="mt-2 w-full rounded-2xl border border-luxury-divider bg-luxury-dark/40 px-4 py-3 text-sm text-luxury-text placeholder:text-luxury-text-muted/40 focus:border-luxury-gold focus:outline-none transition-colors"
                 name="fullName"
               />
             </div>
             <div>
-              <label for="request-email" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Email</label>
+              <label for="request-email" class="text-sm uppercase tracking-wide text-luxury-text-muted">Email</label>
               <input
                 type="email"
                 id="request-email"
                 placeholder="you@email.com"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+                class="mt-2 w-full rounded-2xl border border-luxury-divider bg-luxury-dark/40 px-4 py-3 text-sm text-luxury-text placeholder:text-luxury-text-muted/40 focus:border-luxury-gold focus:outline-none transition-colors"
                 name="email"
               />
             </div>
           </div>
-          <div class="grid gap-5 md:grid-cols-2">
+          <div class="grid gap-6 md:grid-cols-2">
             <div>
-              <label for="request-date" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Date</label>
+              <label for="request-date" class="text-sm uppercase tracking-wide text-luxury-text-muted">Date</label>
               <input
                 type="date"
                 id="request-date"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+                class="mt-2 w-full rounded-2xl border border-luxury-divider bg-luxury-dark/40 px-4 py-3 text-sm text-luxury-text focus:border-luxury-gold focus:outline-none transition-colors"
                 name="date"
               />
             </div>
             <div>
-              <label for="request-location" class="text-sm uppercase tracking-wide text-[#bcb3a2]"
+              <label for="request-location" class="text-sm uppercase tracking-wide text-luxury-text-muted"
                 >Location / Villa Name</label
               >
               <input
                 type="text"
                 placeholder="Villa del Lago"
                 id="request-location"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+                class="mt-2 w-full rounded-2xl border border-luxury-divider bg-luxury-dark/40 px-4 py-3 text-sm text-luxury-text placeholder:text-luxury-text-muted/40 focus:border-luxury-gold focus:outline-none transition-colors"
                 name="location"
               />
             </div>
           </div>
-          <div class="grid gap-5 md:grid-cols-2">
+          <div class="grid gap-6 md:grid-cols-2">
             <div>
-              <label for="request-guests" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Number of Guests</label>
+              <label for="request-guests" class="text-sm uppercase tracking-wide text-luxury-text-muted">Number of Guests</label>
               <input
                 type="number"
                 min="2"
                 placeholder="8"
                 id="request-guests"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+                class="mt-2 w-full rounded-2xl border border-luxury-divider bg-luxury-dark/40 px-4 py-3 text-sm text-luxury-text placeholder:text-luxury-text-muted/40 focus:border-luxury-gold focus:outline-none transition-colors"
                 name="guests"
               />
             </div>
             <div>
-              <label for="request-diet" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Dietary Preferences</label>
+              <label for="request-diet" class="text-sm uppercase tracking-wide text-luxury-text-muted">Dietary Preferences</label>
               <select
                 id="request-diet"
-                class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+                class="mt-2 w-full rounded-2xl border border-luxury-divider bg-luxury-dark/40 px-4 py-3 text-sm text-luxury-text focus:border-luxury-gold focus:outline-none transition-colors"
                 name="preference"
               >
                 <option>Italian Classic</option>
@@ -231,12 +212,12 @@
             </div>
           </div>
           <div>
-            <label for="request-requirements" class="text-sm uppercase tracking-wide text-[#bcb3a2]"
+            <label for="request-requirements" class="text-sm uppercase tracking-wide text-luxury-text-muted"
               >Dietary Requirements</label
             >
             <select
               id="request-requirements"
-              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm focus:border-[#b6893f] focus:outline-none"
+              class="mt-2 w-full rounded-2xl border border-luxury-divider bg-luxury-dark/40 px-4 py-3 text-sm text-luxury-text focus:border-luxury-gold focus:outline-none transition-colors"
               name="requirements"
             >
               <option value="">Select requirement</option>
@@ -246,27 +227,27 @@
             </select>
           </div>
           <div>
-            <label for="request-notes" class="text-sm uppercase tracking-wide text-[#bcb3a2]">Special Requests</label>
+            <label for="request-notes" class="text-sm uppercase tracking-wide text-luxury-text-muted">Special Requests</label>
             <textarea
               id="request-notes"
               rows="3"
               placeholder="Allergies, wine pairing preferences, service style..."
-              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              class="mt-2 w-full rounded-2xl border border-luxury-divider bg-luxury-dark/40 px-4 py-3 text-sm text-luxury-text placeholder:text-luxury-text-muted/40 focus:border-luxury-gold focus:outline-none transition-colors"
               name="notes"
             ></textarea>
           </div>
           <div>
-            <label for="request-whatsapp" class="text-sm uppercase tracking-wide text-[#bcb3a2]">WhatsApp Number</label>
+            <label for="request-whatsapp" class="text-sm uppercase tracking-wide text-luxury-text-muted">WhatsApp Number</label>
             <input
               type="tel"
               placeholder="+1 415 555 2211"
               id="request-whatsapp"
-              class="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#b6893f] focus:outline-none"
+              class="mt-2 w-full rounded-2xl border border-luxury-divider bg-luxury-dark/40 px-4 py-3 text-sm text-luxury-text placeholder:text-luxury-text-muted/40 focus:border-luxury-gold focus:outline-none transition-colors"
               name="whatsapp"
             />
           </div>
           <button
-            class="mt-4 w-full rounded-full bg-[#b6893f] px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+            class="mt-6 w-full luxury-cta !h-14"
             disabled={submitting}
           >
             {submitting ? 'Sending...' : 'Confirm Request'}
@@ -299,7 +280,7 @@
     <svelte:component this={HowItWorksSection} {steps}>
       <button
         slot="cta"
-        class="mx-auto mt-12 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7f1e3]"
+        class="mx-auto mt-16 luxury-cta"
         type="button"
         on:click={openForm}
       >
@@ -308,9 +289,9 @@
     </svelte:component>
   {:else}
     <div bind:this={howAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
-      <p class="text-sm text-[#d9d2c6]/80">Learn how it works</p>
+      <p class="text-sm text-luxury-text-muted">Learn how it works</p>
       <button
-        class="mx-auto mt-6 rounded-full bg-[#b6893f] px-10 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#c39242]"
+        class="mx-auto mt-6 luxury-cta"
         on:click={() => { void loadHow(); openForm(); }}
       >
         Plan My Dinner
@@ -318,110 +299,73 @@
     </div>
   {/if}
 
-  <section class="bg-[#06080d] px-6 py-16" aria-labelledby="chef-menu-heading">
-    <div class="mx-auto max-w-5xl text-center">
-      <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Chef & Menu Studio</p>
-      <h2 id="chef-menu-heading" class="mt-4 font-serif text-3xl">Menus written around your guests, not templates</h2>
-      <p class="mt-3 text-[#d9d2c6]/80">
-        We pair you with chefs trained in Michelin-starred brigades across Milan, Paris, and New York—each adapting the
-        menu to dietary requirements, villa kitchens, and wine cellars.
-      </p>
-    </div>
-    <div class="mx-auto mt-12 grid max-w-6xl gap-8 lg:grid-cols-3">
-      <article class="rounded-3xl border border-white/10 bg-white/10 p-6 text-left">
-        <h3 class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Sample Tasting Menu</h3>
-        <p class="mt-3 font-serif text-2xl">Lake Como Degustation</p>
-        <ul class="mt-4 space-y-2 text-sm text-white/80">
-          <li>Crudo of missoltini with Amalfi lemon granita</li>
-          <li>Risotto with saffron, burnt butter, and alpine chives</li>
-          <li>Line-caught Branzino, chamomile fumet, charred fennel</li>
-          <li>Dark chocolate textures with grappa gelato</li>
-        </ul>
-        <p class="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">Designed for 6–12 guests</p>
-      </article>
-      <article class="rounded-3xl border border-white/10 bg-white/10 p-6 text-left">
-        <h3 class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Chef Backgrounds</h3>
-        <p class="mt-3 font-serif text-2xl">Elite culinary team</p>
-        <ul class="mt-4 space-y-2 text-sm text-white/80">
-          <li>Former sous-chefs at Il Sereno, Armani Ristorante, and Osteria Francescana partner kitchens</li>
-          <li>Trilingual service standards familiar with UHNW villa etiquette</li>
-          <li>Comfortable with kosher kitchens, vegan tasting menus, and last-minute headcounts</li>
-          <li>Secure NDAs and private travel arrangements available</li>
-        </ul>
-        <p class="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">Bookable for one-offs or weeklong stays</p>
-      </article>
-      <article class="rounded-3xl border border-white/10 bg-white/10 p-6 text-left">
-        <h3 class="text-sm uppercase tracking-[0.3em] text-[#d4af37]">Formats We Run</h3>
-        <p class="mt-3 font-serif text-2xl">Choose your experience</p>
-        <ul class="mt-4 space-y-2 text-sm text-white/80">
-          <li>Aperitivo cruises with canapés + champagne service</li>
-          <li>Family-style brunches with kids’ tasting menu</li>
-          <li>Seven-course wine-paired dinners with sommeliers</li>
-          <li>Chef-led cooking classes and market tours</li>
-        </ul>
-        <p class="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">All menus customized pre-arrival</p>
-      </article>
-    </div>
-    <div class="mt-12 text-center">
-      <button
-        class="rounded-full border border-white/20 bg-white/10 px-8 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-white/20"
-        type="button"
-        on:click={openForm}
-      >
-        Request Menu Concepts
-      </button>
-    </div>
-  </section>
-
-  <section class="bg-[#090b0f] px-6 py-16" aria-labelledby="testimonials-heading">
+  <section class="px-6 py-32 bg-luxury-bg" aria-labelledby="testimonials-heading">
+    <div class="section-divider mx-auto mb-20 max-w-md"></div>
     <div class="mx-auto max-w-4xl text-center">
-      <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Testimonials</p>
-      <h2 id="testimonials-heading" class="mt-4 font-serif text-3xl">Guests who hosted unforgettable dinners</h2>
-      <p class="mt-2 text-[#d9d2c6]/80">
-        “The chef treated our villa like a Michelin restaurant. Every course was a story about Lake Como.” — Isabella P.
+      <p class="text-sm uppercase tracking-[0.4em] text-luxury-gold">Testimonials</p>
+      <p class="mt-4 font-serif text-sm uppercase tracking-[0.3em] text-luxury-gold-muted/60">Trusted by international guests arriving from the US, UK, UAE, CH.</p>
+      <h2 id="testimonials-heading" class="mt-6 font-serif text-5xl" style="letter-spacing: -0.01em; font-weight: 500;">Guests who hosted unforgettable dinners</h2>
+      <p class="mt-6 leading-luxury text-luxury-text-muted italic">
+        "The chef treated our villa like a Michelin restaurant. Every course was a story about Lake Como." — Isabella P.
       </p>
     </div>
-    <div class="mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-3">
-      <blockquote class="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-[#d9d2c6]/90">
-        <p>
-          “Chefly managed a 12-person anniversary dinner with zero brief. The sommelier pairings blew us away.”
+    <div class="mx-auto mt-16 grid max-w-6xl gap-6 md:grid-cols-3">
+      <blockquote class="luxury-card p-8 text-sm leading-luxury fade-in relative" style="background: transparent; border: 1px solid #222;">
+        <span class="absolute top-6 left-6 text-4xl text-luxury-gold/40 font-serif">"</span>
+        <p class="mt-8 text-luxury-text-muted">
+          Maravellion managed a 12-person anniversary dinner with zero brief. The sommelier pairings blew us away.
         </p>
-        <footer class="mt-4 text-xs uppercase tracking-[0.3em] text-white/70">Villa Cipressi • US Guests</footer>
+        <footer class="mt-6 text-xs uppercase tracking-[0.25em] text-luxury-text-muted/60">Villa Cipressi — US Guests</footer>
       </blockquote>
-      <blockquote class="rounded-2xl border border-white/10 bg.white/5 p-6 text-sm text-[#d9d2c6]/90">
-        <p>
-          “They sourced vegan ingredients from Milan the same day. The chef even arranged service staff and plateware.”
+      <blockquote class="luxury-card p-8 text-sm leading-luxury fade-in relative" style="background: transparent; border: 1px solid #222;">
+        <span class="absolute top-6 left-6 text-4xl text-luxury-gold/40 font-serif">"</span>
+        <p class="mt-8 text-luxury-text-muted">
+          They sourced vegan ingredients from Milan the same day. The chef even arranged service staff and plateware.
         </p>
-        <footer class="mt-4 text-xs uppercase tracking-[0.3em] text-white/70">Villa Sofia • UK Guests</footer>
+        <footer class="mt-6 text-xs uppercase tracking-[0.25em] text-luxury-text-muted/60">Villa Sofia — UK Guests</footer>
       </blockquote>
-      <blockquote class="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-[#d9d2c6]/90">
-        <p>
-          “Morning markets, custom aperitivo, five courses, dessert trolley. Our hosts felt like movie stars.”
+      <blockquote class="luxury-card p-8 text-sm leading-luxury fade-in relative" style="background: transparent; border: 1px solid #222;">
+        <span class="absolute top-6 left-6 text-4xl text-luxury-gold/40 font-serif">"</span>
+        <p class="mt-8 text-luxury-text-muted">
+          Morning markets, custom aperitivo, five courses, dessert trolley. Our hosts felt like movie stars.
         </p>
-        <footer class="mt-4 text-xs uppercase tracking-[0.3em] text-white/70">Villa Carlotta • DE Guests</footer>
+        <footer class="mt-6 text-xs uppercase tracking-[0.25em] text-luxury-text-muted/60">Villa Carlotta — DE Guests</footer>
       </blockquote>
     </div>
   </section>
 
-  <section id="contact" class="px-6 pb-10 text-center text-sm text-[#bcb3a2]">
-    <p>Over 120 villa dinners organized last season.</p>
-    <p class="mt-1">Rated 4.9/5 by international guests.</p>
+  <section id="contact" class="px-6 py-12 text-center text-sm text-luxury-text-muted">
+    <p class="leading-relaxed">Over 120 villa dinners organized last season.</p>
+    <p class="mt-2 leading-relaxed">Rated 4.9/5 by international guests.</p>
   </section>
 
   {#if FaqSection}
     <svelte:component this={FaqSection} {faqs} />
   {:else}
     <div bind:this={faqAnchor} class="mx-auto max-w-6xl px-6 py-12 text-center">
-      <p class="text-sm text-[#d9d2c6]/80">Frequently asked questions</p>
+      <p class="text-sm text-luxury-text-muted">Frequently asked questions</p>
     </div>
   {/if}
 
-  <footer class="border-t border-white/10 px-6 py-10 text-center text-xs uppercase tracking-[0.3em] text-[#bcb3a2]">
-    <p>Curated Private Chefs for Lake Como</p>
-    <div class="mt-3 space-x-6 text-[0.7rem] normal-case tracking-[0.2em]">
-      <a href="/privacy" class="hover:text-white">Privacy</a>
-      <span class="text-white/30">•</span>
-      <a href="/terms" class="hover:text-white">Terms</a>
+  <!-- By Invitation Only Section -->
+  <section class="px-6 py-20 bg-luxury-darker">
+    <div class="section-divider mx-auto mb-16 max-w-md"></div>
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-serif text-3xl text-luxury-text" style="letter-spacing: -0.005em; font-weight: 500;">By invitation only</h2>
+      <p class="mt-6 leading-luxury text-luxury-text-muted">
+        Private network. Limited access. We accept a small number of new clients each season.
+      </p>
+    </div>
+  </section>
+
+  <footer class="border-t border-luxury-divider px-6 py-16 text-center bg-luxury-bg">
+    <div class="font-serif text-sm uppercase tracking-[0.35em] text-luxury-gold-muted/80" style="letter-spacing: 0.15em;">
+      Discreet. Private. Limited.
+    </div>
+    <div class="mt-8 space-x-6 text-xs text-luxury-text-muted/60">
+      <a href="/privacy" class="hover:text-luxury-gold transition-colors">Privacy</a>
+      <span class="text-luxury-divider">•</span>
+      <a href="/terms" class="hover:text-luxury-gold transition-colors">Terms</a>
     </div>
   </footer>
 </main>

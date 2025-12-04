@@ -16,23 +16,24 @@
   };
 </script>
 
-<section id="services" class="mx-auto max-w-6xl px-6 py-16" aria-labelledby="services-heading">
+<section id="services" class="mx-auto max-w-6xl px-6 py-32" aria-labelledby="services-heading">
+  <div class="section-divider mx-auto mb-20 max-w-md"></div>
   <div class="text-center">
-    <p class="text-sm uppercase tracking-[0.4em] text-[#d4af37]">Why travellers book us</p>
-    <h2 id="services-heading" class="mt-4 font-serif text-3xl">Designed for villa guests who want zero effort</h2>
+    <p class="text-sm uppercase tracking-[0.4em] text-luxury-gold">Why travellers book us</p>
+    <h2 id="services-heading" class="mt-6 font-serif text-5xl" style="letter-spacing: -0.01em; font-weight: 500;">Designed for villa guests who want zero effort</h2>
   </div>
-  <div class="mt-10 grid gap-8 md:grid-cols-3">
+  <div class="mt-16 grid gap-8 md:grid-cols-3">
     {#each services as service}
-      <article class="rounded-2xl border border-white/10 bg-white/10 p-6 text-left shadow-lg shadow-black/20" aria-label={service.title}>
-        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[#b6893f]/20 text-white" aria-hidden="true">
+      <article class="luxury-card p-8 text-left fade-in" aria-label={service.title}>
+        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-luxury-gold/10 text-luxury-gold" aria-hidden="true">
           {@html iconMap[service.icon] || iconMap.clock}
         </div>
-        <h3 class="mt-5 font-serif text-2xl">{service.title}</h3>
-        <p class="mt-3 text-sm text-[#d9d2c6]/90">{service.copy}</p>
+        <h3 class="mt-6 font-serif text-2xl gold-dot" style="letter-spacing: -0.005em;">{service.title}</h3>
+        <p class="mt-4 text-sm leading-luxury text-luxury-text-muted">{service.copy}</p>
         {#if service.details}
-          <ul class="mt-4 list-disc space-y-1 pl-5 text-sm text-white/70">
+          <ul class="mt-5 space-y-2 text-sm leading-relaxed text-luxury-text-muted/80">
             {#each service.details as detail}
-              <li>{detail}</li>
+              <li class="pl-4 border-l border-luxury-gold/30">{detail}</li>
             {/each}
           </ul>
         {/if}
