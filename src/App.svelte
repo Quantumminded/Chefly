@@ -26,8 +26,7 @@
     content="Discreet, uncompromising private dining experiences for luxury villas on Lake Como."
   />
   <meta name="twitter:image" content="https://chefly10.vercel.app/media/hero-img.webp" />
-  <!-- Preload hero poster for LCP candidate (WebP: 74% smaller than JPG) -->
-  <link rel="preload" as="image" href="/media/hero-img.webp" type="image/webp" fetchpriority="high" />
+  
   <link
     rel="preconnect"
     href="https://fonts.googleapis.com"
@@ -75,13 +74,6 @@
         <div class="flex items-center gap-2.5 lg:gap-3">
           <img src="/Logo_Maravellion.png" alt="Maravellion" class="h-7 w-auto lg:h-9" />
           <div class="font-serif text-base lg:text-xl tracking-[0.06em] text-luxury-gold" style="font-weight: 400; letter-spacing: 0.06em;">Maravellion</div>
-        </div>
-        
-        <!-- Badge: centered, hidden on mobile -->
-        <div class="hidden lg:block absolute left-1/2 -translate-x-1/2">
-          <p class="font-serif text-[11px] uppercase tracking-[0.2em] text-luxury-gold-muted/70 whitespace-nowrap">
-            Trusted by villa guests from US • UK • CH • UAE
-          </p>
         </div>
         
         <button
@@ -334,11 +326,6 @@
     </div>
   </section>
 
-  <section id="contact" class="px-6 py-12 text-center text-sm text-luxury-text-muted">
-    <p class="leading-relaxed">Over 120 villa dinners organized last season.</p>
-    <p class="mt-2 leading-relaxed">Rated 4.9/5 by international guests.</p>
-  </section>
-
   {#if FaqSection}
     <svelte:component this={FaqSection} {faqs} />
   {:else}
@@ -358,20 +345,84 @@
     </div>
   </section>
 
+  {#if privacyOpen}
+    <div class="fixed inset-0 z-50 flex items-center justify-center px-4 py-10">
+      <button
+        type="button"
+        class="absolute inset-0 bg-black/90 backdrop-blur-md"
+        aria-label="Close privacy policy"
+        on:click={closePrivacyModal}
+      ></button>
+      <div class="relative z-10 w-full max-w-2xl overflow-y-auto luxury-card p-8" style="max-height: 85vh; border-radius: 20px;">
+        <button
+          class="absolute right-6 top-6 rounded-full border border-luxury-divider bg-luxury-dark/50 p-2 text-luxury-text-muted hover:bg-luxury-dark transition-colors"
+          type="button"
+          aria-label="Close"
+          on:click={closePrivacyModal}
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+            <path d="M6 6l12 12M18 6l-12 12" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <p class="text-xs uppercase tracking-[0.35em] text-luxury-gold">Privacy</p>
+        <h3 class="mt-3 font-serif text-3xl text-luxury-text" style="letter-spacing: -0.005em; font-weight: 500;">How we handle your data</h3>
+        <div class="mt-6 space-y-4 text-sm leading-luxury text-luxury-text-muted">
+          <p>We collect only the details you provide in the request form (name, email, date, villa/location, guests, preferences, notes, WhatsApp).</p>
+          <p>We use this information solely to arrange your dining experience. We do not sell data or share it beyond our private chef network strictly for your booking.</p>
+          <p>Data is processed in the EU and retained up to 12 months for coordination and accounting, unless you ask us to delete it sooner.</p>
+          <p>To request access, correction, or deletion, contact <a href="mailto:privacy@maravellion.com" class="text-luxury-gold hover:opacity-80">privacy@maravellion.com</a>.</p>
+        </div>
+        <button class="mt-8 luxury-cta w-full !h-12" type="button" on:click={closePrivacyModal}>Close</button>
+      </div>
+    </div>
+  {/if}
+
+  {#if termsOpen}
+    <div class="fixed inset-0 z-50 flex items-center justify-center px-4 py-10">
+      <button
+        type="button"
+        class="absolute inset-0 bg-black/90 backdrop-blur-md"
+        aria-label="Close terms"
+        on:click={closeTermsModal}
+      ></button>
+      <div class="relative z-10 w-full max-w-2xl overflow-y-auto luxury-card p-8" style="max-height: 85vh; border-radius: 20px;">
+        <button
+          class="absolute right-6 top-6 rounded-full border border-luxury-divider bg-luxury-dark/50 p-2 text-luxury-text-muted hover:bg-luxury-dark transition-colors"
+          type="button"
+          aria-label="Close"
+          on:click={closeTermsModal}
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+            <path d="M6 6l12 12M18 6l-12 12" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <p class="text-xs uppercase tracking-[0.35em] text-luxury-gold">Terms</p>
+        <h3 class="mt-3 font-serif text-3xl text-luxury-text" style="letter-spacing: -0.005em; font-weight: 500;">Key service terms</h3>
+        <div class="mt-6 space-y-4 text-sm leading-luxury text-luxury-text-muted">
+          <p>Maravellion coordinates private dining with a network of independent professionals. Availability is limited and not guaranteed until confirmed.</p>
+          <p>Allergies and dietary restrictions must be disclosed in writing when booking. We will advise feasibility; final responsibility remains with the host for undisclosed conditions.</p>
+          <p>Typical cancellation: 50% within 7 days; 100% within 72 hours of the event. Any third‑party costs (staff, rentals, special sourcing) may be non‑refundable once committed.</p>
+          <p>Liability is limited to fees paid for the specific booking. Governing law: Italy. For questions, contact <a href="mailto:concierge@maravellion.com" class="text-luxury-gold hover:opacity-80">concierge@maravellion.com</a>.</p>
+        </div>
+        <button class="mt-8 luxury-cta w-full !h-12" type="button" on:click={closeTermsModal}>Close</button>
+      </div>
+    </div>
+  {/if}
+
   <footer class="border-t border-luxury-divider px-6 py-16 text-center bg-luxury-bg">
     <div class="font-serif text-sm uppercase tracking-[0.35em] text-luxury-gold-muted/80" style="letter-spacing: 0.15em;">
       Discreet. Private. Limited.
     </div>
     <div class="mt-8 space-x-6 text-xs text-luxury-text-muted/60">
-      <a href="/privacy" class="hover:text-luxury-gold transition-colors">Privacy</a>
+      <a href="/privacy" aria-haspopup="dialog" on:click|preventDefault={openPrivacyModal} class="hover:text-luxury-gold transition-colors">Privacy</a>
       <span class="text-luxury-divider">•</span>
-      <a href="/terms" class="hover:text-luxury-gold transition-colors">Terms</a>
+      <a href="/terms" aria-haspopup="dialog" on:click|preventDefault={openTermsModal} class="hover:text-luxury-gold transition-colors">Terms</a>
     </div>
   </footer>
 </main>
 
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
   // Dynamically-imported components (reduce initial bundle)
   let ServicesSection: any = null;
   let GallerySection: any = null;
@@ -383,31 +434,27 @@
   let galleryAnchor: HTMLElement | null = null;
   let howAnchor: HTMLElement | null = null;
   let faqAnchor: HTMLElement | null = null;
-  const _timers: number[] = [];
+  
 
-  // lazy-load helpers: preload (warm) and actual load
-  const preloadServices = () => { void import('./components/ServicesSection.svelte'); };
+  // lazy-load helpers: load on demand only
   const loadServices = async () => {
     if (!ServicesSection) {
       ServicesSection = (await import('./components/ServicesSection.svelte')).default;
     }
   };
 
-  const preloadGallery = () => { void import('./components/GallerySection.svelte'); };
   const loadGallery = async () => {
     if (!GallerySection) {
       GallerySection = (await import('./components/GallerySection.svelte')).default;
     }
   };
 
-  const preloadHow = () => { void import('./components/HowItWorksSection.svelte'); };
   const loadHow = async () => {
     if (!HowItWorksSection) {
       HowItWorksSection = (await import('./components/HowItWorksSection.svelte')).default;
     }
   };
 
-  const preloadFaq = () => { void import('./components/FaqSection.svelte'); };
   const loadFaq = async () => {
     if (!FaqSection) {
       FaqSection = (await import('./components/FaqSection.svelte')).default;
@@ -421,19 +468,15 @@
         if (!entry.isIntersecting) continue;
         const el = entry.target as HTMLElement;
         if (el === servicesAnchor) {
-          preloadServices();
           void loadServices();
           observer.unobserve(el);
         } else if (el === galleryAnchor) {
-          preloadGallery();
           void loadGallery();
           observer.unobserve(el);
         } else if (el === howAnchor) {
-          preloadHow();
           void loadHow();
           observer.unobserve(el);
         } else if (el === faqAnchor) {
-          preloadFaq();
           void loadFaq();
           observer.unobserve(el);
         }
@@ -445,22 +488,22 @@
     if (howAnchor) observer.observe(howAnchor);
     if (faqAnchor) observer.observe(faqAnchor);
 
-    // Fallback timers: if IntersectionObserver isn't supported or the user never scrolls,
-    // load critical sections after a short delay so content is visible without clicking.
-    _timers.push(window.setTimeout(() => { if (!ServicesSection) { preloadServices(); void loadServices(); } }, 2500));
-    _timers.push(window.setTimeout(() => { if (!GallerySection) { preloadGallery(); void loadGallery(); } }, 3200));
-    _timers.push(window.setTimeout(() => { if (!HowItWorksSection) { preloadHow(); void loadHow(); } }, 4200));
-    _timers.push(window.setTimeout(() => { if (!FaqSection) { preloadFaq(); void loadFaq(); } }, 5000));
-
     return () => {
       observer.disconnect();
-      for (const t of _timers) clearTimeout(t);
     };
   });
-
-  onDestroy(() => {
-    // ensure timers cleared if component unmounts unexpectedly
-    for (const t of _timers) clearTimeout(t);
+  
+  
+  onMount(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (formOpen) formOpen = false;
+        if (privacyOpen) privacyOpen = false;
+        if (termsOpen) termsOpen = false;
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   });
   import {
     siteUrl,
@@ -478,6 +521,8 @@
   let formOpen = false;
   let submitting = false;
   let submitMessage = '';
+  let privacyOpen = false;
+  let termsOpen = false;
 
   const heroPoster = heroPosterPath;
   const heroPosterAbsolute = `${siteUrl}${heroPosterPath}`;
@@ -492,6 +537,11 @@
     formOpen = false;
     submitMessage = '';
   };
+
+  const openPrivacyModal = () => { privacyOpen = true; };
+  const closePrivacyModal = () => { privacyOpen = false; };
+  const openTermsModal = () => { termsOpen = true; };
+  const closeTermsModal = () => { termsOpen = false; };
 
   const handleSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
@@ -603,5 +653,3 @@
     }))
   };
 </script>
-
-
